@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --color-primary: var(--color-primary);
   --color-primary-hover: var(--color-primary-hover);
@@ -39,6 +41,18 @@
   --color-danger: #C17A56;
   --color-sidebar: #2D2D2D;
   --color-panel-dark: #4A5240;
+  --color-pet-leaf: #4F9D69;
+  --color-pet-leaf-tired: #8DAA55;
+  --color-pet-leaf-dry: #B89B4A;
+  --color-pet-leaf-sick: #9AA37A;
+  --color-pet-stem: #3E7A52;
+  --color-pet-pot: #C9764F;
+  --color-pet-pot-shade: #A85D3B;
+  --color-pet-ink: #2B2B2B;
+  --color-pet-blush: #F4A6A0;
+  --color-pet-water: #3F8FD0;
+  --color-pet-sun: #E8A317;
+  --color-pet-sparkle: #E9B93A;
 }
 
 .dark {
@@ -60,6 +74,18 @@
   --color-danger: #FF5252;
   --color-sidebar: #0A0A0A;
   --color-panel-dark: #1A1F16;
+  --color-pet-leaf: #5CC488;
+  --color-pet-leaf-tired: #A5C060;
+  --color-pet-leaf-dry: #D2B25A;
+  --color-pet-leaf-sick: #A9B38A;
+  --color-pet-stem: #3F9461;
+  --color-pet-pot: #D98A60;
+  --color-pet-pot-shade: #B86F47;
+  --color-pet-ink: #1E1E1E;
+  --color-pet-blush: #F28F89;
+  --color-pet-water: #6BB8F2;
+  --color-pet-sun: #FFC94D;
+  --color-pet-sparkle: #FFE08A;
 }
 
 body {
