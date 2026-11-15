@@ -53,5 +53,56 @@
   "theme": {
     "light": "Light Mode",
     "dark": "Dark Mode"
+  },
+  "pet": {
+    "title": "{{name}}'s care",
+    "characterLabel": "{{name}} looks {{mood}}. Tap to make it bounce.",
+    "loading": "Waking your plant up...",
+    "error": "We couldn't reach your plant. Check your connection and try again.",
+    "retry": "Try again",
+    "today": "today",
+    "daysAgo_one": "{{count}} day ago",
+    "daysAgo_other": "{{count}} days ago",
+    "disclaimer": "Care tips are general guidance and do not replace advice from a plant specialist.",
+    "mood": {
+      "happy": "happy",
+      "concerned": "worried",
+      "sad": "sad",
+      "sick": "sick"
+    },
+    "level": {
+      "satisfied": "OK",
+      "low": "Needs care",
+      "critical": "Urgent"
+    },
+    "actions": {
+      "title": "Care actions",
+      "water": "Water",
+      "sun": "Sunlight",
+      "fertilize": "Fertilize"
+    },
+    "thanks": {
+      "water": "Glug glug! Thank you!",
+      "sun": "Ahh, sunshine feels great!",
+      "fertilize": "Yum! I feel stronger already!"
+    },
+    "message": {
+      "happy": "I feel great today! Thanks for taking care of me.",
+      "sick": "I don't feel well... maybe a photo check-up would help?",
+      "low": {
+        "water": "I'm getting a bit thirsty. Could I have some water?",
+        "sun": "I'd love some sunlight soon.",
+        "fertilize": "My soil could use some nutrients."
+      },
+      "critical": {
+        "water": "I'm so thirsty! Please water me!",
+        "sun": "It's so dark here... I need sunlight!",
+        "fertilize": "I'm starving for nutrients. Please feed me!"
+      }
+    }
+  },
+  "petPreview": {
+    "title": "Meet your plant's moods",
+    "sampleName": "Sprout"
   }
 }

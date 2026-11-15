@@ -53,5 +53,56 @@
   "theme": {
     "light": "Modo Claro",
     "dark": "Modo Oscuro"
+  },
+  "pet": {
+    "title": "Cuidados de {{name}}",
+    "characterLabel": "{{name}} se ve {{mood}}. Tócala para que salte.",
+    "loading": "Despertando a tu planta...",
+    "error": "No pudimos comunicarnos con tu planta. Revisa tu conexión e inténtalo de nuevo.",
+    "retry": "Reintentar",
+    "today": "hoy",
+    "daysAgo_one": "hace {{count}} día",
+    "daysAgo_other": "hace {{count}} días",
+    "disclaimer": "Los consejos de cuidado son orientativos y no reemplazan la opinión de un especialista en plantas.",
+    "mood": {
+      "happy": "feliz",
+      "concerned": "preocupada",
+      "sad": "triste",
+      "sick": "enferma"
+    },
+    "level": {
+      "satisfied": "Bien",
+      "low": "Necesita cuidado",
+      "critical": "Urgente"
+    },
+    "actions": {
+      "title": "Acciones de cuidado",
+      "water": "Regar",
+      "sun": "Luz solar",
+      "fertilize": "Abonar"
+    },
+    "thanks": {
+      "water": "¡Glup glup! ¡Gracias!",
+      "sun": "¡Ahh, qué rico el solcito!",
+      "fertilize": "¡Ñam! ¡Ya me siento más fuerte!"
+    },
+    "message": {
+      "happy": "¡Me siento genial hoy! Gracias por cuidarme.",
+      "sick": "No me siento bien... ¿quizá una foto de revisión ayude?",
+      "low": {
+        "water": "Me está dando un poco de sed. ¿Me das agua?",
+        "sun": "Me encantaría un poco de sol pronto.",
+        "fertilize": "A mi tierra le vendrían bien nutrientes."
+      },
+      "critical": {
+        "water": "¡Tengo muchísima sed! ¡Por favor, riégame!",
+        "sun": "Qué oscuro está aquí... ¡necesito sol!",
+        "fertilize": "¡Me muero de hambre! ¡Aliméntame, por favor!"
+      }
+    }
+  },
+  "petPreview": {
+    "title": "Conoce los ánimos de tu planta",
+    "sampleName": "Brote"
   }
 }
