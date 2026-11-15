@@ -12,7 +12,8 @@ export function useBlink(enabled: boolean): boolean {
 
     let timer = 0;
     const scheduleBlink = () => {
-      const wait = MIN_BLINK_INTERVAL_MS + Math.random() * (MAX_BLINK_INTERVAL_MS - MIN_BLINK_INTERVAL_MS);
+      const wait =
+        MIN_BLINK_INTERVAL_MS + Math.random() * (MAX_BLINK_INTERVAL_MS - MIN_BLINK_INTERVAL_MS);
       timer = window.setTimeout(() => {
         setClosed(true);
         timer = window.setTimeout(() => {

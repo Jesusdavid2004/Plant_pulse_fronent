@@ -25,7 +25,9 @@ for (const locale of LOCALES) {
     const missing = [...keysByLocale[other]].filter((key) => !keysByLocale[locale].has(key));
     if (missing.length === 0) continue;
     hasMismatch = true;
-    process.stderr.write(`Missing in ${locale}.json:\n${missing.map((key) => `  - ${key}`).join('\n')}\n`);
+    process.stderr.write(
+      `Missing in ${locale}.json:\n${missing.map((key) => `  - ${key}`).join('\n')}\n`,
+    );
   }
 }
 

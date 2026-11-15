@@ -33,12 +33,16 @@ export function usePetMotion(target: MotionTarget): PetAngles {
     let frame = 0;
 
     const tick = (now: number) => {
-      const deltaSeconds = Math.min((now - previousTime) / MILLISECONDS_PER_SECOND, MAX_FRAME_SECONDS);
+      const deltaSeconds = Math.min(
+        (now - previousTime) / MILLISECONDS_PER_SECOND,
+        MAX_FRAME_SECONDS,
+      );
       previousTime = now;
       const current = targetRef.current;
       droop += (current.droopDegrees - droop) * Math.min(1, deltaSeconds * DROOP_EASE_PER_SECOND);
       const sway =
-        Math.sin((now / MILLISECONDS_PER_SECOND) * current.swaySpeed) * current.swayAmplitudeDegrees;
+        Math.sin((now / MILLISECONDS_PER_SECOND) * current.swaySpeed) *
+        current.swayAmplitudeDegrees;
       setAngles({ droop, sway });
       frame = requestAnimationFrame(tick);
     };
