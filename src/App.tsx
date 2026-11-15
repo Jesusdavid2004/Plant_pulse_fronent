@@ -8,6 +8,7 @@ const Home = lazy(() => import('./pages/Home'));
 const Dashboard = lazy(() => import('./pages/Dashboard'));
 const PlantDetail = lazy(() => import('./pages/PlantDetail'));
 const History = lazy(() => import('./pages/History'));
+const PetPreview = lazy(() => import('./pages/PetPreview'));
 
 const LoadingFallback = () => (
   <div className="flex justify-center items-center min-h-screen">
@@ -27,6 +28,7 @@ function App() {
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/history" element={<History />} />
                 <Route path="/plants/:id" element={<PlantDetail />} />
+                <Route path="/pet-preview" element={<PetPreview />} />
               </Routes>
             </Suspense>
           </Layout>
