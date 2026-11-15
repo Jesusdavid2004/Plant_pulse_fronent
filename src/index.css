@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @custom-variant dark (&:where(.dark, .dark *));
 
@@ -20,77 +20,102 @@
   --color-danger: var(--color-danger);
   --color-sidebar: var(--color-sidebar);
   --color-panel-dark: var(--color-panel-dark);
+  --color-bg: var(--color-bg);
+  --color-surface-raised: var(--color-surface-raised);
+  --color-primary-contrast: var(--color-primary-contrast);
 }
 
 :root {
   /* Light Mode - Cream/Beige with Brown Text */
-  --color-primary: #4A7C59;
-  --color-primary-hover: #3D6549;
-  --color-secondary: #C17A56;
-  --color-secondary-hover: #A86444;
-  --color-accent: #D4A574;
-  --color-background: #FAF9F6;
-  --color-surface: #FFFFFF;
-  --color-surface-hover: #F5F4F1;
-  --color-border: #E8E6E3;
-  --color-text: #3D3D3D;
-  --color-text-secondary: #6B6B6B;
-  --color-text-muted: #9B9B9B;
-  --color-success: #4A7C59;
-  --color-warning: #D4A574;
-  --color-danger: #C17A56;
-  --color-sidebar: #2D2D2D;
-  --color-panel-dark: #4A5240;
-  --color-pet-leaf: #4F9D69;
-  --color-pet-leaf-tired: #8DAA55;
-  --color-pet-leaf-dry: #B89B4A;
-  --color-pet-leaf-sick: #9AA37A;
-  --color-pet-stem: #3E7A52;
-  --color-pet-pot: #C9764F;
-  --color-pet-pot-shade: #A85D3B;
-  --color-pet-ink: #2B2B2B;
-  --color-pet-blush: #F4A6A0;
-  --color-pet-water: #3F8FD0;
-  --color-pet-sun: #E8A317;
-  --color-pet-sparkle: #E9B93A;
+  --color-primary: #4a7c59;
+  --color-primary-hover: #3d6549;
+  --color-secondary: #c17a56;
+  --color-secondary-hover: #a86444;
+  --color-accent: #d4a574;
+  --color-background: #faf9f6;
+  --color-surface: #ffffff;
+  --color-surface-hover: #f5f4f1;
+  --color-border: #e8e6e3;
+  --color-text: #3d3d3d;
+  --color-text-secondary: #6b6b6b;
+  --color-text-muted: #6b6b6b;
+  --color-success: #2f7a4b;
+  --color-warning: #b26a00;
+  --color-danger: #b3402a;
+  --color-sidebar: #2d2d2d;
+  --color-panel-dark: #4a5240;
+  --color-pet-leaf: #4f9d69;
+  --color-pet-leaf-tired: #8daa55;
+  --color-pet-leaf-dry: #b89b4a;
+  --color-pet-leaf-sick: #9aa37a;
+  --color-pet-stem: #3e7a52;
+  --color-pet-pot: #c9764f;
+  --color-pet-pot-shade: #a85d3b;
+  --color-pet-ink: #2b2b2b;
+  --color-pet-blush: #f4a6a0;
+  --color-pet-water: #3f8fd0;
+  --color-pet-sun: #e8a317;
+  --color-pet-sparkle: #e9b93a;
+  --color-bg: #faf9f6;
+  --color-surface-raised: #ffffff;
+  --color-primary-contrast: #ffffff;
+  --color-status-healthy-bg: #ddf1e4;
+  --color-status-healthy-text: #1e5b35;
+  --color-status-warning-bg: #fbebc8;
+  --color-status-warning-text: #7a4a00;
+  --color-status-critical-bg: #f8dad3;
+  --color-status-critical-text: #8e2a16;
 }
 
 .dark {
   /* Dark Mode - Black with Green Accents */
-  --color-primary: #4CAF7D;
-  --color-primary-hover: #5FC490;
-  --color-secondary: #C17A56;
-  --color-secondary-hover: #D48B67;
-  --color-accent: #4CAF7D;
+  --color-primary: #4caf7d;
+  --color-primary-hover: #5fc490;
+  --color-secondary: #c17a56;
+  --color-secondary-hover: #d48b67;
+  --color-accent: #4caf7d;
   --color-background: #000000;
-  --color-surface: #0A0A0A;
+  --color-surface: #0a0a0a;
   --color-surface-hover: #151515;
-  --color-border: #2A2A2A;
-  --color-text: #FFFFFF;
-  --color-text-secondary: #B0B0B0;
-  --color-text-muted: #707070;
-  --color-success: #4CAF7D;
-  --color-warning: #FFA500;
-  --color-danger: #FF5252;
-  --color-sidebar: #0A0A0A;
-  --color-panel-dark: #1A1F16;
-  --color-pet-leaf: #5CC488;
-  --color-pet-leaf-tired: #A5C060;
-  --color-pet-leaf-dry: #D2B25A;
-  --color-pet-leaf-sick: #A9B38A;
-  --color-pet-stem: #3F9461;
-  --color-pet-pot: #D98A60;
-  --color-pet-pot-shade: #B86F47;
-  --color-pet-ink: #1E1E1E;
-  --color-pet-blush: #F28F89;
-  --color-pet-water: #6BB8F2;
-  --color-pet-sun: #FFC94D;
-  --color-pet-sparkle: #FFE08A;
+  --color-border: #2a2a2a;
+  --color-text: #ffffff;
+  --color-text-secondary: #b0b0b0;
+  --color-text-muted: #9a9a9a;
+  --color-success: #4caf7d;
+  --color-warning: #ffa500;
+  --color-danger: #ff5252;
+  --color-sidebar: #0a0a0a;
+  --color-panel-dark: #1a1f16;
+  --color-pet-leaf: #5cc488;
+  --color-pet-leaf-tired: #a5c060;
+  --color-pet-leaf-dry: #d2b25a;
+  --color-pet-leaf-sick: #a9b38a;
+  --color-pet-stem: #3f9461;
+  --color-pet-pot: #d98a60;
+  --color-pet-pot-shade: #b86f47;
+  --color-pet-ink: #1e1e1e;
+  --color-pet-blush: #f28f89;
+  --color-pet-water: #6bb8f2;
+  --color-pet-sun: #ffc94d;
+  --color-pet-sparkle: #ffe08a;
+  --color-bg: #000000;
+  --color-surface-raised: #151515;
+  --color-primary-contrast: #04170c;
+  --color-status-healthy-bg: #123524;
+  --color-status-healthy-text: #7be0a6;
+  --color-status-warning-bg: #3b2a07;
+  --color-status-warning-text: #ffc25a;
+  --color-status-critical-bg: #3f1511;
+  --color-status-critical-text: #ff8a7a;
 }
 
 body {
   background-color: var(--color-background);
   color: var(--color-text);
-  transition: background-color 0.3s ease, color 0.3s ease;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
+    sans-serif;
 }
