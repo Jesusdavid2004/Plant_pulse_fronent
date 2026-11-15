@@ -1,41 +1,45 @@
-import { Suspense, lazy } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Layout from './components/Layout';
-import { ThemeProvider } from './components/ThemeProvider';
-import { PlantProvider } from './store/plantStore';
+import { lazy, Suspense } from 'react';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { AppShell } from './components/layout/AppShell';
+import { Spinner } from './components/ui/Spinner';
+import { ProtectedRoute } from './features/auth/components/ProtectedRoute';
+import { AuthProvider } from './features/auth/hooks/AuthProvider';
+import { LocaleLayout } from './i18n/LocaleLayout';
+import { detectLocale, localizedPath } from './i18n/routing';
+import { ThemeProvider } from './theme/ThemeProvider';
 
-const Home = lazy(() => import('./pages/Home'));
-const Dashboard = lazy(() => import('./pages/Dashboard'));
-const PlantDetail = lazy(() => import('./pages/PlantDetail'));
-const History = lazy(() => import('./pages/History'));
-const PetPreview = lazy(() => import('./pages/PetPreview'));
+const HomePage = lazy(() => import('./pages/HomePage'));
+const AuthPage = lazy(() => import('./pages/AuthPage'));
+const DashboardPage = lazy(() => import('./pages/DashboardPage'));
+const PlantDetailPage = lazy(() => import('./pages/PlantDetailPage'));
+const SettingsPage = lazy(() => import('./pages/SettingsPage'));
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 
-const LoadingFallback = () => (
-  <div className="flex justify-center items-center min-h-screen">
-    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600" />
-  </div>
-);
-
-function App() {
+export default function App() {
   return (
     <ThemeProvider>
-      <PlantProvider>
-        <BrowserRouter>
-          <Layout>
-            <Suspense fallback={<LoadingFallback />}>
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/dashboard" element={<Dashboard />} />
-                <Route path="/history" element={<History />} />
-                <Route path="/plants/:id" element={<PlantDetail />} />
-                <Route path="/pet-preview" element={<PetPreview />} />
-              </Routes>
-            </Suspense>
-          </Layout>
-        </BrowserRouter>
-      </PlantProvider>
+      <BrowserRouter>
+        <AuthProvider>
+          <Suspense fallback={<Spinner />}>
+            <Routes>
+              <Route path="/" element={<Navigate to={localizedPath(detectLocale())} replace />} />
+              <Route path="/:locale" element={<LocaleLayout />}>
+                <Route element={<AppShell />}>
+                  <Route index element={<HomePage />} />
+                  <Route path="login" element={<AuthPage mode="login" />} />
+                  <Route path="register" element={<AuthPage mode="register" />} />
+                  <Route element={<ProtectedRoute />}>
+                    <Route path="dashboard" element={<DashboardPage />} />
+                    <Route path="plants/:id" element={<PlantDetailPage />} />
+                    <Route path="settings" element={<SettingsPage />} />
+                  </Route>
+                  <Route path="*" element={<NotFoundPage />} />
+                </Route>
+              </Route>
+            </Routes>
+          </Suspense>
+        </AuthProvider>
+      </BrowserRouter>
     </ThemeProvider>
   );
 }
-
-export default App;
