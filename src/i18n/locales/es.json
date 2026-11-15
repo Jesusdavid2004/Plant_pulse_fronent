@@ -1,58 +1,163 @@
 {
   "app": {
     "name": "PlantPulse",
-    "tagline": "Monitoreo de salud de plantas con IA"
+    "tagline": "Cuida tus plantas con una ayudita de la IA",
+    "footer": "© {{year}} PlantPulse. Los consejos de cuidado son solo informativos."
   },
   "nav": {
-    "home": "Inicio",
-    "dashboard": "Panel",
-    "about": "Acerca de"
-  },
-  "home": {
-    "title": "Monitorea Tus Plantas con IA",
-    "subtitle": "Captura, analiza y mejora la salud de tus plantas",
-    "getStarted": "Comenzar",
-    "learnMore": "Saber Mas"
-  },
-  "dashboard": {
-    "title": "Panel de Control",
-    "myPlants": "Mis Plantas",
-    "addPlant": "Agregar Planta",
-    "noPlants": "No tienes plantas aun. Agrega tu primera planta para comenzar."
-  },
-  "plant": {
-    "name": "Nombre de la Planta",
-    "species": "Especie",
-    "status": "Estado",
-    "healthScore": "Puntuacion de Salud",
-    "day1": "Dia 1",
-    "day3": "Dia 3",
-    "day7": "Dia 7",
-    "captureImage": "Capturar Imagen",
-    "uploadImage": "Subir Imagen",
-    "analyze": "Analizar",
-    "diagnosis": "Diagnostico",
-    "prognosis": "Pronostico",
-    "carePlan": "Plan de Cuidado"
-  },
-  "status": {
-    "healthy": "Saludable",
-    "warning": "Advertencia",
-    "critical": "Critico",
-    "active": "Activo"
-  },
-  "common": {
-    "save": "Guardar",
-    "cancel": "Cancelar",
-    "delete": "Eliminar",
-    "edit": "Editar",
-    "loading": "Cargando...",
-    "error": "Ocurrio un error",
-    "success": "Exito"
+    "main": "Navegación principal",
+    "skipToContent": "Saltar al contenido",
+    "dashboard": "Mis plantas",
+    "login": "Iniciar sesión",
+    "register": "Registrarse",
+    "logout": "Cerrar sesión",
+    "account": "Cuenta",
+    "language": "Idioma",
+    "theme": "Tema",
+    "languageNames": {
+      "en": "Inglés",
+      "es": "Español"
+    }
   },
   "theme": {
-    "light": "Modo Claro",
-    "dark": "Modo Oscuro"
+    "system": "Usar tema del sistema",
+    "light": "Tema claro",
+    "dark": "Tema oscuro"
+  },
+  "home": {
+    "title": "Tus plantas, vivas y con personalidad.",
+    "subtitle": "Toma una foto y la IA de PlantPulse identifica tu planta, revisa su salud y le da una cara. Si olvidas regarla, lo verás en su estado de ánimo.",
+    "getStarted": "Crear mi primera planta",
+    "openDashboard": "Abrir mis plantas",
+    "heroPetLabel": "Una planta de dibujos animados feliz en una maceta",
+    "howTitle": "Cómo funciona",
+    "steps": {
+      "photo": {
+        "title": "Toma una foto",
+        "body": "Usa tu cámara o sube una imagen de cualquier planta de interior."
+      },
+      "meet": {
+        "title": "Conoce a tu planta",
+        "body": "La IA identifica la especie y crea un personaje con sus propias hojas."
+      },
+      "care": {
+        "title": "Mantenla feliz",
+        "body": "Riégala, dale luz y abono. Cuidarla de verdad la mantiene sonriendo."
+      }
+    },
+    "moodsTitle": "Una planta que muestra cómo se siente",
+    "moodsSubtitle": "Su ánimo cambia con el cuidado que le das y con la salud que la IA ve en cada revisión."
+  },
+  "auth": {
+    "loginTitle": "Bienvenido de nuevo",
+    "registerTitle": "Crea tu cuenta",
+    "name": "Nombre (opcional)",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "passwordHint": "Usa al menos {{count}} caracteres.",
+    "loginSubmit": "Iniciar sesión",
+    "registerSubmit": "Registrarse",
+    "noAccount": "¿No tienes una cuenta?",
+    "haveAccount": "¿Ya tienes una cuenta?",
+    "registerLink": "Regístrate",
+    "loginLink": "Inicia sesión"
+  },
+  "dashboard": {
+    "title": "Mis plantas",
+    "addPlant": "Añadir una planta",
+    "addFirst": "Añadir mi primera planta",
+    "emptyTitle": "Aún no tienes plantas",
+    "emptyBody": "Añade tu primera planta con una foto y conoce a su personaje.",
+    "error": "No pudimos cargar tus plantas."
+  },
+  "addPlant": {
+    "title": "Añadir una planta",
+    "intro": "Toma o sube una foto clara de la planta. La IA la identificará y revisará su salud.",
+    "nameLabel": "Nombre (opcional)",
+    "namePlaceholder": "Déjalo vacío para usar el nombre identificado",
+    "submit": "Identificar mi planta",
+    "analyzing": "Mirando tu planta con atención...",
+    "identified": "Encontramos {{name}} ({{species}}).",
+    "meet": "Conocer a mi planta"
+  },
+  "photo": {
+    "empty": "Aún no has elegido una foto.",
+    "useCamera": "Usar cámara",
+    "chooseFile": "Elegir una foto",
+    "changeFile": "Elegir otra foto",
+    "capture": "Tomar foto",
+    "previewAlt": "Vista previa de la foto de la planta seleccionada",
+    "cameraError": "No pudimos acceder a la cámara. Puedes subir una foto en su lugar."
+  },
+  "plant": {
+    "unknownSpecies": "Especie desconocida",
+    "notFound": "No pudimos encontrar esta planta.",
+    "backToDashboard": "Volver a mis plantas",
+    "delete": "Eliminar planta",
+    "deleteTitle": "¿Eliminar {{name}}?",
+    "deleteBody": "La planta, sus fotos y su historial se borrarán de forma permanente.",
+    "deleteConfirm": "Eliminar definitivamente",
+    "historyTitle": "Historial de salud",
+    "historyEmpty": "Aún no hay revisiones.",
+    "historyError": "No pudimos cargar el historial."
+  },
+  "health": {
+    "healthy": "Saludable",
+    "warning": "Necesita atención",
+    "critical": "Crítica",
+    "score": "{{score}}/100"
+  },
+  "analysis": {
+    "title": "Análisis de la planta",
+    "visibleSigns": "Lo que ve la IA",
+    "advice": "Cuidados sugeridos",
+    "disclaimer": "El análisis de la IA es informativo y puede equivocarse. No reemplaza la opinión de un especialista en plantas."
+  },
+  "checkup": {
+    "title": "Revisión de salud",
+    "intro": "Sube una foto nueva para ver cómo está tu planta hoy.",
+    "submit": "Revisar salud",
+    "analyzing": "Analizando...",
+    "resultTitle": "Última revisión"
+  },
+  "settings": {
+    "title": "Cuenta",
+    "dangerZone": "Zona de peligro",
+    "deleteBody": "Al eliminar tu cuenta se borran de forma permanente tus plantas, fotos y datos.",
+    "deleteAccount": "Eliminar mi cuenta",
+    "deleteTitle": "¿Eliminar tu cuenta?",
+    "deleteConfirmBody": "Esto no se puede deshacer. Se borrarán todas tus plantas y fotos.",
+    "deleteConfirm": "Borrar todo"
+  },
+  "notFound": {
+    "title": "Esta página se marchitó",
+    "body": "La página que buscas no existe.",
+    "home": "Ir a la página de inicio"
+  },
+  "common": {
+    "loading": "Cargando...",
+    "retry": "Reintentar",
+    "cancel": "Cancelar",
+    "close": "Cerrar"
+  },
+  "errors": {
+    "generic": "Algo salió mal. Inténtalo de nuevo.",
+    "internal": "Algo falló de nuestro lado. Inténtalo de nuevo.",
+    "validationFailed": "Revisa la información que ingresaste.",
+    "plantNotFound": "No pudimos encontrar esa planta.",
+    "invalidCareType": "Esa acción de cuidado no es válida.",
+    "emailAlreadyRegistered": "Ya existe una cuenta con este correo.",
+    "invalidCredentials": "El correo o la contraseña son incorrectos.",
+    "unauthorized": "Inicia sesión para continuar.",
+    "invalidRefreshToken": "Tu sesión expiró. Inicia sesión de nuevo.",
+    "invalidImage": "Ese archivo no es una imagen válida. Usa una foto JPEG, PNG o WebP.",
+    "imageRequired": "Primero añade una foto.",
+    "fileTooLarge": "La foto es demasiado grande. Prueba con una más pequeña.",
+    "notAPlant": "No pudimos ver una planta en esa foto. Prueba con una imagen más clara.",
+    "aiResponseInvalid": "La IA dio una respuesta inesperada. Inténtalo de nuevo.",
+    "aiProviderUnavailable": "El servicio de IA está ocupado ahora mismo. Inténtalo de nuevo en un momento.",
+    "aiQuotaExceeded": "Alcanzaste el límite de análisis de IA de hoy. Inténtalo mañana.",
+    "rateLimited": "Demasiadas solicitudes. Espera un momento."
   },
   "pet": {
     "title": "Cuidados de {{name}}",
@@ -100,9 +205,5 @@
         "fertilize": "¡Me muero de hambre! ¡Aliméntame, por favor!"
       }
     }
-  },
-  "petPreview": {
-    "title": "Conoce los ánimos de tu planta",
-    "sampleName": "Brote"
   }
 }

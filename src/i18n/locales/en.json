@@ -1,58 +1,163 @@
 {
   "app": {
     "name": "PlantPulse",
-    "tagline": "AI-powered plant health monitoring"
+    "tagline": "Care for your plants with a little help from AI",
+    "footer": "© {{year}} PlantPulse. Plant care advice is informational only."
   },
   "nav": {
-    "home": "Home",
-    "dashboard": "Dashboard",
-    "about": "About"
-  },
-  "home": {
-    "title": "Monitor Your Plants with AI",
-    "subtitle": "Capture, analyze, and improve your plant health",
-    "getStarted": "Get Started",
-    "learnMore": "Learn More"
-  },
-  "dashboard": {
-    "title": "Dashboard",
-    "myPlants": "My Plants",
-    "addPlant": "Add Plant",
-    "noPlants": "No plants yet. Add your first plant to get started."
-  },
-  "plant": {
-    "name": "Plant Name",
-    "species": "Species",
-    "status": "Status",
-    "healthScore": "Health Score",
-    "day1": "Day 1",
-    "day3": "Day 3",
-    "day7": "Day 7",
-    "captureImage": "Capture Image",
-    "uploadImage": "Upload Image",
-    "analyze": "Analyze",
-    "diagnosis": "Diagnosis",
-    "prognosis": "Prognosis",
-    "carePlan": "Care Plan"
-  },
-  "status": {
-    "healthy": "Healthy",
-    "warning": "Warning",
-    "critical": "Critical",
-    "active": "Active"
-  },
-  "common": {
-    "save": "Save",
-    "cancel": "Cancel",
-    "delete": "Delete",
-    "edit": "Edit",
-    "loading": "Loading...",
-    "error": "An error occurred",
-    "success": "Success"
+    "main": "Main navigation",
+    "skipToContent": "Skip to content",
+    "dashboard": "My plants",
+    "login": "Log in",
+    "register": "Sign up",
+    "logout": "Log out",
+    "account": "Account",
+    "language": "Language",
+    "theme": "Theme",
+    "languageNames": {
+      "en": "English",
+      "es": "Spanish"
+    }
   },
   "theme": {
-    "light": "Light Mode",
-    "dark": "Dark Mode"
+    "system": "Use system theme",
+    "light": "Light theme",
+    "dark": "Dark theme"
+  },
+  "home": {
+    "title": "Your plants, alive and talking.",
+    "subtitle": "Take a photo and PlantPulse's AI identifies your plant, checks its health and gives it a face. If you forget to water it, you will see it in its mood.",
+    "getStarted": "Create my first plant",
+    "openDashboard": "Open my plants",
+    "heroPetLabel": "A happy cartoon plant in a pot",
+    "howTitle": "How it works",
+    "steps": {
+      "photo": {
+        "title": "Snap a photo",
+        "body": "Use your camera or upload a picture of any houseplant."
+      },
+      "meet": {
+        "title": "Meet your plant",
+        "body": "AI identifies the species and builds a character with its own leaves."
+      },
+      "care": {
+        "title": "Keep it happy",
+        "body": "Water it, give it light and food. Real care in real life keeps it smiling."
+      }
+    },
+    "moodsTitle": "A plant that shows how it feels",
+    "moodsSubtitle": "Its mood changes with the care you give it and with the health the AI sees in each check-up."
+  },
+  "auth": {
+    "loginTitle": "Welcome back",
+    "registerTitle": "Create your account",
+    "name": "Name (optional)",
+    "email": "Email",
+    "password": "Password",
+    "passwordHint": "Use at least {{count}} characters.",
+    "loginSubmit": "Log in",
+    "registerSubmit": "Sign up",
+    "noAccount": "Don't have an account?",
+    "haveAccount": "Already have an account?",
+    "registerLink": "Sign up",
+    "loginLink": "Log in"
+  },
+  "dashboard": {
+    "title": "My plants",
+    "addPlant": "Add a plant",
+    "addFirst": "Add my first plant",
+    "emptyTitle": "No plants yet",
+    "emptyBody": "Add your first plant with a photo and meet its character.",
+    "error": "We couldn't load your plants."
+  },
+  "addPlant": {
+    "title": "Add a plant",
+    "intro": "Take or upload a clear photo of the plant. The AI will identify it and check its health.",
+    "nameLabel": "Name (optional)",
+    "namePlaceholder": "Leave empty to use the identified name",
+    "submit": "Identify my plant",
+    "analyzing": "Looking closely at your plant...",
+    "identified": "We found {{name}} ({{species}}).",
+    "meet": "Meet my plant"
+  },
+  "photo": {
+    "empty": "No photo selected yet.",
+    "useCamera": "Use camera",
+    "chooseFile": "Choose a photo",
+    "changeFile": "Choose another photo",
+    "capture": "Take photo",
+    "previewAlt": "Preview of the selected plant photo",
+    "cameraError": "We couldn't access the camera. You can upload a photo instead."
+  },
+  "plant": {
+    "unknownSpecies": "Unknown species",
+    "notFound": "We couldn't find this plant.",
+    "backToDashboard": "Back to my plants",
+    "delete": "Delete plant",
+    "deleteTitle": "Delete {{name}}?",
+    "deleteBody": "The plant, its photos and its history will be permanently removed.",
+    "deleteConfirm": "Delete permanently",
+    "historyTitle": "Health history",
+    "historyEmpty": "No check-ups yet.",
+    "historyError": "We couldn't load the history."
+  },
+  "health": {
+    "healthy": "Healthy",
+    "warning": "Needs attention",
+    "critical": "Critical",
+    "score": "{{score}}/100"
+  },
+  "analysis": {
+    "title": "Plant analysis",
+    "visibleSigns": "What the AI sees",
+    "advice": "Suggested care",
+    "disclaimer": "AI analysis is informational and can be wrong. It does not replace the advice of a plant specialist."
+  },
+  "checkup": {
+    "title": "Health check-up",
+    "intro": "Upload a new photo to see how your plant is doing today.",
+    "submit": "Check health",
+    "analyzing": "Analyzing...",
+    "resultTitle": "Latest check-up"
+  },
+  "settings": {
+    "title": "Account",
+    "dangerZone": "Danger zone",
+    "deleteBody": "Deleting your account permanently removes your plants, photos and data.",
+    "deleteAccount": "Delete my account",
+    "deleteTitle": "Delete your account?",
+    "deleteConfirmBody": "This cannot be undone. All your plants and photos will be erased.",
+    "deleteConfirm": "Delete everything"
+  },
+  "notFound": {
+    "title": "This page wilted away",
+    "body": "The page you are looking for doesn't exist.",
+    "home": "Go to the home page"
+  },
+  "common": {
+    "loading": "Loading...",
+    "retry": "Try again",
+    "cancel": "Cancel",
+    "close": "Close"
+  },
+  "errors": {
+    "generic": "Something went wrong. Please try again.",
+    "internal": "Something went wrong on our side. Please try again.",
+    "validationFailed": "Please check the information you entered.",
+    "plantNotFound": "We couldn't find that plant.",
+    "invalidCareType": "That care action is not valid.",
+    "emailAlreadyRegistered": "An account with this email already exists.",
+    "invalidCredentials": "The email or password is incorrect.",
+    "unauthorized": "Please log in to continue.",
+    "invalidRefreshToken": "Your session expired. Please log in again.",
+    "invalidImage": "That file is not a valid image. Use a JPEG, PNG or WebP photo.",
+    "imageRequired": "Please add a photo first.",
+    "fileTooLarge": "The photo is too large. Try a smaller one.",
+    "notAPlant": "We couldn't see a plant in that photo. Try a clearer picture.",
+    "aiResponseInvalid": "The AI gave an unexpected answer. Please try again.",
+    "aiProviderUnavailable": "The AI service is busy right now. Please try again in a moment.",
+    "aiQuotaExceeded": "You reached today's limit of AI analyses. Try again tomorrow.",
+    "rateLimited": "Too many requests. Please wait a moment."
   },
   "pet": {
     "title": "{{name}}'s care",
@@ -100,9 +205,5 @@
         "fertilize": "I'm starving for nutrients. Please feed me!"
       }
     }
-  },
-  "petPreview": {
-    "title": "Meet your plant's moods",
-    "sampleName": "Sprout"
   }
 }
