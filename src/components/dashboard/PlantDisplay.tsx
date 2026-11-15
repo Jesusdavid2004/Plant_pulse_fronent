@@ -1,4 +1,19 @@
+import { usePlantStore } from '../../store/plantStore';
+import { PlantPet } from '../../features/plant-pet/components/PlantPet';
+
 const PlantDisplay = () => {
+  const { state } = usePlantStore();
+  const plant = state.plants[0];
+
+  if (plant) {
+    return (
+      <div className="h-full overflow-y-auto rounded-2xl bg-[var(--color-surface)] p-8">
+        <h1 className="mb-6 text-3xl font-bold text-[var(--color-text)]">{plant.name}</h1>
+        <PlantPet key={plant.id} plantId={plant.id} plantName={plant.name} />
+      </div>
+    );
+  }
+
   return (
     <div className="h-full bg-[var(--color-surface)] rounded-2xl p-8 relative overflow-hidden">
       {/* Plant Info */}

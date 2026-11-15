@@ -9,6 +9,7 @@ import StatusIndicator from '../components/StatusIndicator';
 import Timeline from '../components/Timeline';
 import DiagnosisDisplay from '../components/DiagnosisDisplay';
 import CarePlanDisplay from '../components/CarePlanDisplay';
+import { PlantPet } from '../features/plant-pet/components/PlantPet';
 
 const PlantDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -51,6 +52,14 @@ const PlantDetail = () => {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <Card className="lg:col-span-3">
+          <CardBody>
+            <div className="mx-auto max-w-md">
+              <PlantPet key={plant.id} plantId={plant.id} plantName={plant.name} />
+            </div>
+          </CardBody>
+        </Card>
+
         <Card>
           <CardHeader>
             <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
