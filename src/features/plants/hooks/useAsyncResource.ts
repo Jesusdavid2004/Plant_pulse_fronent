@@ -22,8 +22,20 @@ export function useAsyncResource<T>(load: () => Promise<T>): AsyncResource<T> {
   }, [load]);
 
   useEffect(() => {
-    void reload();
-  }, [reload]);
+    let cancelled = false;
+    load()
+      .then((result) => {
+        if (cancelled) return;
+        setData(result);
+        setStatus('ready');
+      })
+      .catch(() => {
+        if (!cancelled) setStatus('error');
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [load]);
 
   return { data, status, reload };
 }

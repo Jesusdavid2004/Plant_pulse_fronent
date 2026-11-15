@@ -25,17 +25,25 @@ export function PhotoPicker({ photo, onChange, disabled = false }: PhotoPickerPr
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [cameraOpen, setCameraOpen] = useState(false);
   const [cameraFailed, setCameraFailed] = useState(false);
-  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [preview, setPreview] = useState<{ file: File; url: string } | null>(null);
 
   useEffect(() => {
-    if (!photo) {
-      setPreviewUrl(null);
-      return;
-    }
-    const url = URL.createObjectURL(photo);
-    setPreviewUrl(url);
-    return () => URL.revokeObjectURL(url);
+    if (!photo) return;
+    let cancelled = false;
+    const reader = new FileReader();
+    reader.onload = () => {
+      if (!cancelled && typeof reader.result === 'string') {
+        setPreview({ file: photo, url: reader.result });
+      }
+    };
+    reader.readAsDataURL(photo);
+    return () => {
+      cancelled = true;
+      reader.abort();
+    };
   }, [photo]);
+
+  const previewUrl = preview && preview.file === photo ? preview.url : null;
 
   const capture = useCallback(async () => {
     const screenshot = webcamRef.current?.getScreenshot();

@@ -32,9 +32,22 @@ export function usePlantPet(plantId: string): PlantPetState {
   }, [plantId]);
 
   useEffect(() => {
-    void reload();
-    return () => window.clearTimeout(effectTimer.current);
-  }, [reload]);
+    let cancelled = false;
+    careService
+      .getMood(plantId)
+      .then((mood) => {
+        if (cancelled) return;
+        setSnapshot(mood);
+        setStatus('ready');
+      })
+      .catch(() => {
+        if (!cancelled) setStatus('error');
+      });
+    return () => {
+      cancelled = true;
+      window.clearTimeout(effectTimer.current);
+    };
+  }, [plantId]);
 
   const logCare = useCallback(
     async (type: CareType) => {
