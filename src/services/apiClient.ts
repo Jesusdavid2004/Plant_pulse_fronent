@@ -1,3 +1,5 @@
+import i18n from '../i18n';
+
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
 
 interface ApiResponse<T> {
@@ -22,6 +24,7 @@ class ApiClient {
       const response = await fetch(`${this.baseUrl}${endpoint}`, {
         headers: {
           'Content-Type': 'application/json',
+          'Accept-Language': i18n.language,
           ...options.headers,
         },
         ...options,
@@ -72,6 +75,7 @@ class ApiClient {
     try {
       const response = await fetch(`${this.baseUrl}${endpoint}`, {
         method: 'POST',
+        headers: { 'Accept-Language': i18n.language },
         body: formData,
       });
 
