@@ -11,7 +11,10 @@ export function CareIcon({ type, className }: CareIconProps) {
   if (type === 'WATER') {
     return (
       <svg {...common}>
-        <path d="M12 3 C7 10 6 13 6 15 a6 6 0 0 0 12 0 c0-2-1-5-6-12 Z" fill="var(--color-pet-water)" />
+        <path
+          d="M12 3 C7 10 6 13 6 15 a6 6 0 0 0 12 0 c0-2-1-5-6-12 Z"
+          fill="var(--color-pet-water)"
+        />
       </svg>
     );
   }

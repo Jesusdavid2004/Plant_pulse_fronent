@@ -3,10 +3,9 @@ import { useBlink } from '../hooks/useBlink';
 import { usePetMotion } from '../hooks/usePetMotion';
 import { MOOD_PRESENTATION, type EyeStyle, type MouthStyle } from '../moodPresentation';
 import type { CareType, Mood } from '../types';
+import type { PetTraits } from '../../plants/types';
+import { buildLeafPoses, DEFAULT_PET_TRAITS, LEAF_PATHS, leafScale } from '../leafGeometry';
 
-const LEAF_PATH = 'M0 0 C-24 -22 -22 -62 0 -88 C22 -62 24 -22 0 0 Z';
-const SIDE_LEAF_SPREAD_DEGREES = 52;
-const CENTER_LEAF_DROOP_RATIO = 0.3;
 const BOUNCE_HEIGHT_PX = -16;
 const BOUNCE_DURATION_S = 0.5;
 const BREATH_SCALE = 1.025;
@@ -122,9 +121,18 @@ export interface PlantPetCharacterProps {
   effect: CareType | null;
   urgentNeed: CareType | null;
   label: string;
+  traits?: PetTraits;
+  interactive?: boolean;
 }
 
-export function PlantPetCharacter({ mood, effect, urgentNeed, label }: PlantPetCharacterProps) {
+export function PlantPetCharacter({
+  mood,
+  effect,
+  urgentNeed,
+  label,
+  traits = DEFAULT_PET_TRAITS,
+  interactive = true,
+}: PlantPetCharacterProps) {
   const presentation = MOOD_PRESENTATION[mood];
   const reduceMotion = useReducedMotion();
   const [scope, animate] = useAnimate();
@@ -145,40 +153,58 @@ export function PlantPetCharacter({ mood, effect, urgentNeed, label }: PlantPetC
     void animate(scope.current, { y: [0, BOUNCE_HEIGHT_PX, 0] }, { duration: BOUNCE_DURATION_S });
   };
 
-  const sideLeaf = SIDE_LEAF_SPREAD_DEGREES + angles.droop;
+  const leafPoses = buildLeafPoses(traits.leafCount);
+  const scale = leafScale(traits.leafCount);
+  const Wrapper = interactive ? 'button' : 'div';
+  const wrapperProps = interactive
+    ? ({ type: 'button', onClick: bounce, 'aria-label': label } as const)
+    : {};
 
   return (
     <div ref={scope}>
       <motion.div
         style={{ originY: 1 }}
-        animate={reduceMotion ? undefined : { scale: [1, BREATH_SCALE, 1] }}
+        {...(!reduceMotion && { animate: { scale: [1, BREATH_SCALE, 1] } })}
         transition={{ duration: BREATH_DURATION_S, repeat: Infinity, ease: 'easeInOut' }}
       >
-        <button
-          type="button"
-          onClick={bounce}
-          aria-label={label}
-          className="block w-full cursor-pointer rounded-3xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-primary)]"
+        <Wrapper
+          {...wrapperProps}
+          className={`block w-full rounded-3xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-primary)] ${interactive ? 'cursor-pointer' : ''}`}
         >
-          <svg viewBox="0 0 240 262" aria-hidden="true" className="mx-auto h-auto w-full max-w-[320px]">
+          <svg
+            viewBox="0 0 240 262"
+            aria-hidden="true"
+            className="mx-auto h-auto w-full max-w-[320px]"
+          >
             <ellipse cx={120} cy={252} rx={62} ry={7} fill="var(--color-pet-ink)" opacity={0.12} />
 
             <g style={{ color: presentation.leafColorVar }}>
-              <path d="M120 148 L120 96" stroke="var(--color-pet-stem)" strokeWidth={8} strokeLinecap="round" />
+              <path
+                d="M120 148 L120 96"
+                stroke="var(--color-pet-stem)"
+                strokeWidth={8}
+                strokeLinecap="round"
+              />
               <g transform="translate(120 100)">
-                <g transform={`rotate(${-sideLeaf + angles.sway})`}>
-                  <path d={LEAF_PATH} fill="currentColor" style={{ transition: 'fill 0.8s ease' }} />
-                </g>
-                <g transform={`rotate(${sideLeaf + angles.sway * 0.8})`}>
-                  <path d={LEAF_PATH} fill="currentColor" style={{ transition: 'fill 0.8s ease' }} />
-                </g>
-                <g transform={`rotate(${angles.sway * 0.5 + angles.droop * CENTER_LEAF_DROOP_RATIO})`}>
-                  <path d={LEAF_PATH} fill="currentColor" style={{ transition: 'fill 0.8s ease' }} />
-                </g>
+                {leafPoses.map((leaf) => (
+                  <g
+                    key={leaf.key}
+                    transform={`rotate(${leaf.baseAngle + angles.droop * leaf.droopRatio + angles.sway * leaf.swayRatio}) scale(${scale})`}
+                  >
+                    <path
+                      d={LEAF_PATHS[traits.leafShape]}
+                      fill="currentColor"
+                      style={{ transition: 'fill 0.8s ease' }}
+                    />
+                  </g>
+                ))}
               </g>
             </g>
 
-            <path d="M62 152 H178 L168 240 Q167 248 158 248 H82 Q73 248 72 240 Z" fill="var(--color-pet-pot)" />
+            <path
+              d="M62 152 H178 L168 240 Q167 248 158 248 H82 Q73 248 72 240 Z"
+              fill="var(--color-pet-pot)"
+            />
             <rect x={54} y={140} width={132} height={22} rx={9} fill="var(--color-pet-pot-shade)" />
 
             {presentation.showBlush && (
@@ -206,10 +232,11 @@ export function PlantPetCharacter({ mood, effect, urgentNeed, label }: PlantPetC
 
             {presentation.showSparkles && !effect && <SparkleBurst positions={SPARKLE_POSITIONS} />}
             {effect === 'FERTILIZE' && <SparkleBurst positions={SPARKLE_POSITIONS} />}
-            {effect === 'WATER' && RAIN_DROPS.map((x, index) => <WaterDrop key={x} x={x} delay={index * 0.15} />)}
+            {effect === 'WATER' &&
+              RAIN_DROPS.map((x, index) => <WaterDrop key={x} x={x} delay={index * 0.15} />)}
             {effect === 'SUN' && <SunGlow />}
           </svg>
-        </button>
+        </Wrapper>
       </motion.div>
     </div>
   );

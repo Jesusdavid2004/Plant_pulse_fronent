@@ -5,13 +5,15 @@ import { CareActions } from './CareActions';
 import { NeedMeters } from './NeedMeters';
 import { PlantPetCharacter } from './PlantPetCharacter';
 import { SpeechBubble } from './SpeechBubble';
+import type { PetTraits } from '../../plants/types';
 
 interface PlantPetProps {
   plantId: string;
   plantName: string;
+  traits?: PetTraits | undefined;
 }
 
-export function PlantPet({ plantId, plantName }: PlantPetProps) {
+export function PlantPet({ plantId, plantName, traits }: PlantPetProps) {
   const { t } = useTranslation();
   const { snapshot, status, pendingCare, activeEffect, logCare, reload } = usePlantPet(plantId);
 
@@ -49,9 +51,17 @@ export function PlantPet({ plantId, plantName }: PlantPetProps) {
         mood={snapshot.mood}
         effect={activeEffect}
         urgentNeed={snapshot.mostUrgentNeed}
-        label={t('pet.characterLabel', { name: plantName, mood: t(`pet.mood.${snapshot.mood.toLowerCase()}`) })}
+        {...(traits && { traits })}
+        label={t('pet.characterLabel', {
+          name: plantName,
+          mood: t(`pet.mood.${snapshot.mood.toLowerCase()}`),
+        })}
       />
-      <CareActions pendingCare={pendingCare} urgentNeed={snapshot.mostUrgentNeed} onCare={(type) => void logCare(type)} />
+      <CareActions
+        pendingCare={pendingCare}
+        urgentNeed={snapshot.mostUrgentNeed}
+        onCare={(type) => void logCare(type)}
+      />
       <NeedMeters needs={snapshot.needs} />
       <p className="text-xs text-[var(--color-text-muted)]">{t('pet.disclaimer')}</p>
     </section>

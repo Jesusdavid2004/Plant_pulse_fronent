@@ -68,6 +68,16 @@ const NEED_KEYS: Record<CareType, string> = {
   FERTILIZE: 'fertilize',
 };
 
+const SICK_SCORE_THRESHOLD = 40;
+const CONCERNED_SCORE_THRESHOLD = 70;
+
+export function moodForScore(score: number | null): Mood {
+  if (score === null) return 'HAPPY';
+  if (score < SICK_SCORE_THRESHOLD) return 'SICK';
+  if (score < CONCERNED_SCORE_THRESHOLD) return 'CONCERNED';
+  return 'HAPPY';
+}
+
 export function needKey(type: CareType): string {
   return NEED_KEYS[type];
 }

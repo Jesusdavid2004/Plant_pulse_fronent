@@ -1,4 +1,4 @@
-import { apiClient } from '../../../services/apiClient';
+import { apiClient } from '../../../lib/api-client';
 import {
   loggedCareSchema,
   plantMoodSchema,
@@ -7,24 +7,13 @@ import {
   type PlantMood,
 } from '../types';
 
-export class CareRequestError extends Error {
-  constructor() {
-    super('Care request failed');
-    this.name = 'CareRequestError';
-  }
-}
-
 export class CareService {
-  async getMood(plantId: string): Promise<PlantMood> {
-    const response = await apiClient.get<unknown>(`/plants/${plantId}/mood`);
-    if (!response.success) throw new CareRequestError();
-    return plantMoodSchema.parse(response.data);
+  getMood(plantId: string): Promise<PlantMood> {
+    return apiClient.get(`/plants/${plantId}/mood`, plantMoodSchema);
   }
 
-  async logCare(plantId: string, type: CareType): Promise<LoggedCare> {
-    const response = await apiClient.post<unknown>(`/plants/${plantId}/care`, { type });
-    if (!response.success) throw new CareRequestError();
-    return loggedCareSchema.parse(response.data);
+  logCare(plantId: string, type: CareType): Promise<LoggedCare> {
+    return apiClient.post(`/plants/${plantId}/care`, { type }, loggedCareSchema);
   }
 }
 
