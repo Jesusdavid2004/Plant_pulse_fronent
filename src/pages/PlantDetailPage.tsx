@@ -5,7 +5,7 @@ import { Button } from '../components/ui/Button';
 import { Card } from '../components/ui/Card';
 import { Dialog } from '../components/ui/Dialog';
 import { Spinner } from '../components/ui/Spinner';
-import { PlantPet } from '../features/plant-pet/components/PlantPet';
+import { PetHub } from '../features/plant-pet/components/PetHub';
 import { AnalysisCard } from '../features/plants/components/AnalysisCard';
 import { CheckupPanel } from '../features/plants/components/CheckupPanel';
 import { usePlantDetail } from '../features/plants/hooks/usePlants';
@@ -68,7 +68,7 @@ export default function PlantDetailPage() {
       <div className="grid gap-6 lg:grid-cols-2">
         <Card>
           <div className="mx-auto max-w-md">
-            <PlantPet plantId={current.id} plantName={current.name} traits={current.petTraits} />
+            <PetHub plantId={current.id} plantName={current.name} traits={current.petTraits} />
           </div>
         </Card>
 

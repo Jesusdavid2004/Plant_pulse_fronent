@@ -127,7 +127,16 @@
     "deleteAccount": "Delete my account",
     "deleteTitle": "Delete your account?",
     "deleteConfirmBody": "This cannot be undone. All your plants and photos will be erased.",
-    "deleteConfirm": "Delete everything"
+    "deleteConfirm": "Delete everything",
+    "notifications": {
+      "title": "Email reminders",
+      "body": "Get an email when your plants are being neglected. At most one email a day, in the language you use now.",
+      "toggle": "Send me reminders",
+      "sendTest": "Send a test email",
+      "saved": "Preference saved.",
+      "testSent": "Test email sent. Check your inbox.",
+      "error": "We could not complete that. Please try again."
+    }
   },
   "notFound": {
     "title": "This page wilted away",
@@ -157,7 +166,15 @@
     "aiResponseInvalid": "The AI gave an unexpected answer. Please try again.",
     "aiProviderUnavailable": "The AI service is busy right now. Please try again in a moment.",
     "aiQuotaExceeded": "You reached today's limit of AI analyses. Try again tomorrow.",
-    "rateLimited": "Too many requests. Please wait a moment."
+    "rateLimited": "Too many requests. Please wait a moment.",
+    "invalidGame": "That game is not available.",
+    "unknownCatalogItem": "That item does not exist.",
+    "sceneLocked": "That scene is still locked. Keep caring for your plant to level up.",
+    "itemNotOwned": "You need to buy that item first.",
+    "itemAlreadyOwned": "You already own that item.",
+    "insufficientCoins": "You do not have enough coins yet. Play a game or care for your plant.",
+    "concurrentUpdate": "Your plant changed in the meantime. Please try again.",
+    "invalidUnsubscribeToken": "This unsubscribe link is not valid."
   },
   "pet": {
     "title": "{{name}}'s care",
@@ -205,5 +222,88 @@
         "fertilize": "I'm starving for nutrients. Please feed me!"
       }
     }
+  },
+  "hub": {
+    "level": "Level {{level}}",
+    "xp": "Experience",
+    "coins_one": "{{count}} coin",
+    "coins_other": "{{count}} coins",
+    "levelUp": "Level up! Your plant reached level {{level}}.",
+    "reward": "You earned {{xp}} XP and {{coins}} coins.",
+    "tabs": "Plant sections",
+    "tab": {
+      "care": "Care",
+      "play": "Play",
+      "wardrobe": "Style"
+    }
+  },
+  "games": {
+    "intro": "Play mini-games to earn coins and experience. Coins left to earn today: {{count}}.",
+    "start": "Start",
+    "play": "Play",
+    "again": "Play again",
+    "back": "Back to games",
+    "saveError": "We could not save your result. Please try again.",
+    "symbols": {
+      "water": "water drop",
+      "sun": "sun",
+      "sparkle": "sparkle",
+      "leaf": "leaf",
+      "flower": "flower",
+      "heart": "heart"
+    },
+    "drop": {
+      "title": "Catch the drops",
+      "summary": "Move your plant to catch the water and dodge the bugs.",
+      "instructions": "Catch the water drops for {{seconds}} seconds. Drag, use the arrow keys or the buttons. Avoid the bugs!",
+      "score": "Score: {{score}}",
+      "time": "{{seconds}}s",
+      "areaLabel": "Game area. Move the plant left and right to catch water drops.",
+      "left": "Move left",
+      "right": "Move right"
+    },
+    "memory": {
+      "title": "Memory match",
+      "summary": "Flip the cards and find all the pairs in as few moves as you can.",
+      "instructions": "Find every matching pair. Fewer moves earn a better score.",
+      "moves_one": "{{count}} move",
+      "moves_other": "{{count}} moves",
+      "cardDown": "Card {{number}}, face down",
+      "cardUp": "{{symbol}}, face up"
+    },
+    "result": {
+      "score": "Your score: {{score}}",
+      "reward": "You earned {{xp}} XP and {{coins}} coins.",
+      "dailyLimit": "You reached today's coin limit. Come back tomorrow for more coins."
+    }
+  },
+  "wardrobe": {
+    "error": "We could not change that. Please try again.",
+    "scenes": "Scenes",
+    "pots": "Pots",
+    "equip": "Use",
+    "equipped": "In use",
+    "unlocksAt": "Unlocks at level {{level}}",
+    "buy": "Buy for {{price}} coins",
+    "sceneNames": {
+      "LIVING_ROOM": "Living room",
+      "GARDEN": "Garden",
+      "NIGHT_SKY": "Night sky",
+      "BEACH": "Beach",
+      "GREENHOUSE": "Greenhouse"
+    },
+    "potNames": {
+      "TERRACOTTA": "Terracotta",
+      "BLUE": "Blue",
+      "WHITE": "White",
+      "PINK": "Pink",
+      "GOLD": "Golden"
+    }
+  },
+  "unsubscribe": {
+    "doneTitle": "You are unsubscribed",
+    "doneBody": "You will no longer receive reminder emails. You can turn them on again in your account settings.",
+    "errorTitle": "This link does not work",
+    "errorBody": "The unsubscribe link is invalid or has expired. You can turn reminders off in your account settings."
   }
 }

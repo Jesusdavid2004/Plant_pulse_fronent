@@ -1,8 +1,9 @@
+import { useRef, useState } from 'react';
 import { motion, useAnimate, useReducedMotion } from 'motion/react';
 import { useBlink } from '../hooks/useBlink';
 import { usePetMotion } from '../hooks/usePetMotion';
 import { MOOD_PRESENTATION, type EyeStyle, type MouthStyle } from '../moodPresentation';
-import type { CareType, Mood } from '../types';
+import type { CareType, Mood, PotKey } from '../types';
 import type { PetTraits } from '../../plants/types';
 import {
   BLOOM_PATHS,
@@ -15,7 +16,7 @@ import {
   LEAF_PATHS,
   leafScale,
 } from '../leafGeometry';
-import { blendLeafColor, bloomColorVar } from '../traitColors';
+import { blendLeafColor, bloomColorVar, potColorVars } from '../traitColors';
 
 const BOUNCE_HEIGHT_PX = -16;
 const BOUNCE_DURATION_S = 0.5;
@@ -171,12 +172,32 @@ function Bloom({ traits, wiltDegrees, sway, wilted }: BloomProps) {
   );
 }
 
+const HEART_BASE_X = 88;
+const HEART_X_SPREAD = 64;
+const HEART_X_STEP = 37;
+const MAX_HEARTS = 4;
+
+function FloatingHeart({ id, onDone }: { id: number; onDone: (id: number) => void }) {
+  const x = HEART_BASE_X + ((id * HEART_X_STEP) % HEART_X_SPREAD);
+  return (
+    <motion.path
+      d={`M${x} 118 C${x - 10} 108 ${x - 9} 98 ${x} 100 C${x + 9} 98 ${x + 10} 108 ${x} 118 Z`}
+      fill="var(--color-plant-bloom-red)"
+      initial={{ y: 0, opacity: 1 }}
+      animate={{ y: -70, opacity: 0 }}
+      transition={{ duration: 1.2, ease: 'easeOut' }}
+      onAnimationComplete={() => onDone(id)}
+    />
+  );
+}
+
 export interface PlantPetCharacterProps {
   mood: Mood;
   effect: CareType | null;
   urgentNeed: CareType | null;
   label: string;
   traits?: PetTraits;
+  pot?: PotKey;
   interactive?: boolean;
 }
 
@@ -186,6 +207,7 @@ export function PlantPetCharacter({
   urgentNeed,
   label,
   traits = DEFAULT_PET_TRAITS,
+  pot = 'TERRACOTTA',
   interactive = true,
 }: PlantPetCharacterProps) {
   const presentation = MOOD_PRESENTATION[mood];
@@ -203,11 +225,19 @@ export function PlantPetCharacter({
       ? 'squint'
       : presentation.eyeStyle;
 
+  const [hearts, setHearts] = useState<number[]>([]);
+  const nextHeartId = useRef(0);
+  const dropHeart = (id: number) => setHearts((current) => current.filter((heart) => heart !== id));
+
   const bounce = () => {
     if (reduceMotion) return;
+    nextHeartId.current += 1;
+    const id = nextHeartId.current;
+    setHearts((current) => [...current.slice(-(MAX_HEARTS - 1)), id]);
     void animate(scope.current, { y: [0, BOUNCE_HEIGHT_PX, 0] }, { duration: BOUNCE_DURATION_S });
   };
 
+  const potVars = potColorVars(pot);
   const leafPoses = buildLeafPoses(traits.leafCount);
   const scale = leafScale(traits.leafCount);
   const Wrapper = interactive ? 'button' : 'div';
@@ -272,9 +302,9 @@ export function PlantPetCharacter({
 
             <path
               d="M62 152 H178 L168 240 Q167 248 158 248 H82 Q73 248 72 240 Z"
-              fill="var(--color-pet-pot)"
+              fill={potVars.base}
             />
-            <rect x={54} y={140} width={132} height={22} rx={9} fill="var(--color-pet-pot-shade)" />
+            <rect x={54} y={140} width={132} height={22} rx={9} fill={potVars.shade} />
 
             {presentation.showBlush && (
               <g fill="var(--color-pet-blush)" opacity={0.85}>
@@ -304,6 +334,9 @@ export function PlantPetCharacter({
             {effect === 'WATER' &&
               RAIN_DROPS.map((x, index) => <WaterDrop key={x} x={x} delay={index * 0.15} />)}
             {effect === 'SUN' && <SunGlow />}
+            {hearts.map((id) => (
+              <FloatingHeart key={id} id={id} onDone={dropHeart} />
+            ))}
           </svg>
         </Wrapper>
       </motion.div>

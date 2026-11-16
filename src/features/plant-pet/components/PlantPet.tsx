@@ -6,16 +6,31 @@ import { NeedMeters } from './NeedMeters';
 import { PlantPetCharacter } from './PlantPetCharacter';
 import { SpeechBubble } from './SpeechBubble';
 import type { PetTraits } from '../../plants/types';
+import type { LoggedCare, PotKey, SceneKey } from '../types';
+import { PetScene } from './PetScene';
 
 interface PlantPetProps {
   plantId: string;
   plantName: string;
   traits?: PetTraits | undefined;
+  scene?: SceneKey;
+  pot?: PotKey;
+  onCareLogged?: (care: LoggedCare) => void;
 }
 
-export function PlantPet({ plantId, plantName, traits }: PlantPetProps) {
+export function PlantPet({
+  plantId,
+  plantName,
+  traits,
+  scene = 'LIVING_ROOM',
+  pot = 'TERRACOTTA',
+  onCareLogged,
+}: PlantPetProps) {
   const { t } = useTranslation();
-  const { snapshot, status, pendingCare, activeEffect, logCare, reload } = usePlantPet(plantId);
+  const { snapshot, status, pendingCare, activeEffect, logCare, reload } = usePlantPet(
+    plantId,
+    onCareLogged,
+  );
 
   if (status === 'loading' && !snapshot) {
     return (
@@ -46,17 +61,22 @@ export function PlantPet({ plantId, plantName, traits }: PlantPetProps) {
 
   return (
     <section aria-label={t('pet.title', { name: plantName })} className="space-y-5">
-      <SpeechBubble message={message} />
-      <PlantPetCharacter
-        mood={snapshot.mood}
-        effect={activeEffect}
-        urgentNeed={snapshot.mostUrgentNeed}
-        {...(traits && { traits })}
-        label={t('pet.characterLabel', {
-          name: plantName,
-          mood: t(`pet.mood.${snapshot.mood.toLowerCase()}`),
-        })}
-      />
+      <PetScene scene={scene}>
+        <div className="space-y-3">
+          <SpeechBubble message={message} />
+          <PlantPetCharacter
+            mood={snapshot.mood}
+            effect={activeEffect}
+            urgentNeed={snapshot.mostUrgentNeed}
+            pot={pot}
+            {...(traits && { traits })}
+            label={t('pet.characterLabel', {
+              name: plantName,
+              mood: t(`pet.mood.${snapshot.mood.toLowerCase()}`),
+            })}
+          />
+        </div>
+      </PetScene>
       <CareActions
         pendingCare={pendingCare}
         urgentNeed={snapshot.mostUrgentNeed}

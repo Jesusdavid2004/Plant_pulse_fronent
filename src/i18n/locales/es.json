@@ -127,7 +127,16 @@
     "deleteAccount": "Eliminar mi cuenta",
     "deleteTitle": "¿Eliminar tu cuenta?",
     "deleteConfirmBody": "Esto no se puede deshacer. Se borrarán todas tus plantas y fotos.",
-    "deleteConfirm": "Borrar todo"
+    "deleteConfirm": "Borrar todo",
+    "notifications": {
+      "title": "Recordatorios por correo",
+      "body": "Recibe un correo cuando tus plantas estén descuidadas. Máximo uno al día, en el idioma que usas ahora.",
+      "toggle": "Enviarme recordatorios",
+      "sendTest": "Enviar un correo de prueba",
+      "saved": "Preferencia guardada.",
+      "testSent": "Correo de prueba enviado. Revisa tu bandeja de entrada.",
+      "error": "No pudimos completar eso. Inténtalo de nuevo."
+    }
   },
   "notFound": {
     "title": "Esta página se marchitó",
@@ -157,7 +166,15 @@
     "aiResponseInvalid": "La IA dio una respuesta inesperada. Inténtalo de nuevo.",
     "aiProviderUnavailable": "El servicio de IA está ocupado ahora mismo. Inténtalo de nuevo en un momento.",
     "aiQuotaExceeded": "Alcanzaste el límite de análisis de IA de hoy. Inténtalo mañana.",
-    "rateLimited": "Demasiadas solicitudes. Espera un momento."
+    "rateLimited": "Demasiadas solicitudes. Espera un momento.",
+    "invalidGame": "Ese juego no está disponible.",
+    "unknownCatalogItem": "Ese artículo no existe.",
+    "sceneLocked": "Ese escenario aún está bloqueado. Sigue cuidando tu planta para subir de nivel.",
+    "itemNotOwned": "Primero debes comprar ese artículo.",
+    "itemAlreadyOwned": "Ya tienes ese artículo.",
+    "insufficientCoins": "Aún no tienes suficientes monedas. Juega o cuida tu planta.",
+    "concurrentUpdate": "Tu planta cambió mientras tanto. Inténtalo de nuevo.",
+    "invalidUnsubscribeToken": "Este enlace para darte de baja no es válido."
   },
   "pet": {
     "title": "Cuidados de {{name}}",
@@ -205,5 +222,88 @@
         "fertilize": "¡Me muero de hambre! ¡Aliméntame, por favor!"
       }
     }
+  },
+  "hub": {
+    "level": "Nivel {{level}}",
+    "xp": "Experiencia",
+    "coins_one": "{{count}} moneda",
+    "coins_other": "{{count}} monedas",
+    "levelUp": "¡Subiste de nivel! Tu planta llegó al nivel {{level}}.",
+    "reward": "Ganaste {{xp}} XP y {{coins}} monedas.",
+    "tabs": "Secciones de la planta",
+    "tab": {
+      "care": "Cuidar",
+      "play": "Jugar",
+      "wardrobe": "Estilo"
+    }
+  },
+  "games": {
+    "intro": "Juega minijuegos para ganar monedas y experiencia. Monedas por ganar hoy: {{count}}.",
+    "start": "Empezar",
+    "play": "Jugar",
+    "again": "Jugar otra vez",
+    "back": "Volver a los juegos",
+    "saveError": "No pudimos guardar tu resultado. Inténtalo de nuevo.",
+    "symbols": {
+      "water": "gota de agua",
+      "sun": "sol",
+      "sparkle": "destello",
+      "leaf": "hoja",
+      "flower": "flor",
+      "heart": "corazón"
+    },
+    "drop": {
+      "title": "Atrapa las gotas",
+      "summary": "Mueve tu planta para atrapar el agua y esquivar los bichos.",
+      "instructions": "Atrapa las gotas de agua durante {{seconds}} segundos. Arrastra, usa las flechas del teclado o los botones. ¡Evita los bichos!",
+      "score": "Puntos: {{score}}",
+      "time": "{{seconds}} s",
+      "areaLabel": "Zona de juego. Mueve la planta a izquierda y derecha para atrapar gotas de agua.",
+      "left": "Mover a la izquierda",
+      "right": "Mover a la derecha"
+    },
+    "memory": {
+      "title": "Memoria",
+      "summary": "Voltea las cartas y encuentra todas las parejas con los menos movimientos posibles.",
+      "instructions": "Encuentra todas las parejas. Menos movimientos dan más puntos.",
+      "moves_one": "{{count}} movimiento",
+      "moves_other": "{{count}} movimientos",
+      "cardDown": "Carta {{number}}, boca abajo",
+      "cardUp": "{{symbol}}, boca arriba"
+    },
+    "result": {
+      "score": "Tu puntaje: {{score}}",
+      "reward": "Ganaste {{xp}} XP y {{coins}} monedas.",
+      "dailyLimit": "Alcanzaste el límite de monedas de hoy. Vuelve mañana para ganar más."
+    }
+  },
+  "wardrobe": {
+    "error": "No pudimos cambiar eso. Inténtalo de nuevo.",
+    "scenes": "Escenarios",
+    "pots": "Macetas",
+    "equip": "Usar",
+    "equipped": "En uso",
+    "unlocksAt": "Se desbloquea en el nivel {{level}}",
+    "buy": "Comprar por {{price}} monedas",
+    "sceneNames": {
+      "LIVING_ROOM": "Sala",
+      "GARDEN": "Jardín",
+      "NIGHT_SKY": "Cielo nocturno",
+      "BEACH": "Playa",
+      "GREENHOUSE": "Invernadero"
+    },
+    "potNames": {
+      "TERRACOTTA": "Terracota",
+      "BLUE": "Azul",
+      "WHITE": "Blanca",
+      "PINK": "Rosada",
+      "GOLD": "Dorada"
+    }
+  },
+  "unsubscribe": {
+    "doneTitle": "Te diste de baja",
+    "doneBody": "Ya no recibirás correos de recordatorio. Puedes activarlos de nuevo en los ajustes de tu cuenta.",
+    "errorTitle": "Este enlace no funciona",
+    "errorBody": "El enlace para darte de baja no es válido o ya venció. Puedes desactivar los recordatorios en los ajustes de tu cuenta."
   }
 }
