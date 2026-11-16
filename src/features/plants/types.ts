@@ -1,11 +1,32 @@
 import { z } from 'zod';
 
-export const LEAF_SHAPES = ['ROUND', 'POINTED', 'LONG', 'SPIKY', 'HEART'] as const;
+export const LEAF_SHAPES = [
+  'ROUND',
+  'POINTED',
+  'LONG',
+  'SPIKY',
+  'HEART',
+  'GRASS',
+  'BROAD',
+] as const;
+export const LEAF_COLORS = [
+  'GREEN',
+  'DARK_GREEN',
+  'LIGHT_GREEN',
+  'BLUE_GREEN',
+  'PURPLE',
+  'RED',
+] as const;
+export const BLOOM_SHAPES = ['NONE', 'SPIKE', 'FLOWER'] as const;
+export const BLOOM_COLORS = ['PINK', 'RED', 'ORANGE', 'YELLOW', 'PURPLE', 'WHITE', 'BLUE'] as const;
 export const HEALTH_STATUSES = ['healthy', 'warning', 'critical'] as const;
 
 export const petTraitsSchema = z.object({
   leafShape: z.enum(LEAF_SHAPES),
   leafCount: z.number().int().min(1).max(12),
+  leafColor: z.enum(LEAF_COLORS).default('GREEN'),
+  bloomShape: z.enum(BLOOM_SHAPES).default('NONE'),
+  bloomColor: z.enum(BLOOM_COLORS).default('PINK'),
 });
 
 export const plantSchema = z.object({
@@ -45,6 +66,9 @@ export const checkupSchema = z.object({
 
 export type LeafShape = (typeof LEAF_SHAPES)[number];
 export type HealthStatus = (typeof HEALTH_STATUSES)[number];
+export type LeafColor = (typeof LEAF_COLORS)[number];
+export type BloomColor = (typeof BLOOM_COLORS)[number];
+export type BloomShape = (typeof BLOOM_SHAPES)[number];
 export type PetTraits = z.infer<typeof petTraitsSchema>;
 export type Plant = z.infer<typeof plantSchema>;
 export type Analysis = z.infer<typeof analysisSchema>;

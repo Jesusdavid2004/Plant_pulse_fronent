@@ -8,6 +8,7 @@ export interface MoodPresentation {
   swayAmplitudeDegrees: number;
   swaySpeed: number;
   leafColorVar: string;
+  plantColorWeight: number;
   eyeStyle: EyeStyle;
   mouthStyle: MouthStyle;
   showBlush: boolean;
@@ -21,6 +22,7 @@ export const MOOD_PRESENTATION: Record<Mood, MoodPresentation> = {
     swayAmplitudeDegrees: 4,
     swaySpeed: 1.6,
     leafColorVar: 'var(--color-pet-leaf)',
+    plantColorWeight: 100,
     eyeStyle: 'open',
     mouthStyle: 'smile',
     showBlush: true,
@@ -32,6 +34,7 @@ export const MOOD_PRESENTATION: Record<Mood, MoodPresentation> = {
     swayAmplitudeDegrees: 2.5,
     swaySpeed: 1.2,
     leafColorVar: 'var(--color-pet-leaf-tired)',
+    plantColorWeight: 55,
     eyeStyle: 'tired',
     mouthStyle: 'flat',
     showBlush: false,
@@ -43,6 +46,7 @@ export const MOOD_PRESENTATION: Record<Mood, MoodPresentation> = {
     swayAmplitudeDegrees: 1.2,
     swaySpeed: 0.8,
     leafColorVar: 'var(--color-pet-leaf-dry)',
+    plantColorWeight: 30,
     eyeStyle: 'sad',
     mouthStyle: 'frown',
     showBlush: false,
@@ -54,6 +58,7 @@ export const MOOD_PRESENTATION: Record<Mood, MoodPresentation> = {
     swayAmplitudeDegrees: 0.8,
     swaySpeed: 0.6,
     leafColorVar: 'var(--color-pet-leaf-sick)',
+    plantColorWeight: 30,
     eyeStyle: 'dizzy',
     mouthStyle: 'wobbly',
     showBlush: false,

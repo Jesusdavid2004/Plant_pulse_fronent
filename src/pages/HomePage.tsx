@@ -1,5 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { PlantPetCharacter } from '../features/plant-pet/components/PlantPetCharacter';
+import { DEFAULT_PET_TRAITS } from '../features/plant-pet/leafGeometry';
+import type { PetTraits } from '../features/plants/types';
 import { MOODS, type CareType, type Mood } from '../features/plant-pet/types';
 import { LocalizedLink } from '../i18n/LocalizedLink';
 import { useAuth } from '../features/auth/hooks/authContext';
@@ -11,6 +13,14 @@ const SHOWCASE_NEED: Record<Mood, CareType | null> = {
   SAD: 'SUN',
   SICK: null,
 };
+const HERO_TRAITS: PetTraits = {
+  leafShape: 'GRASS',
+  leafCount: 7,
+  leafColor: 'DARK_GREEN',
+  bloomShape: 'SPIKE',
+  bloomColor: 'PINK',
+};
+const SHOWCASE_TRAITS: PetTraits = { ...DEFAULT_PET_TRAITS, leafCount: 5 };
 const STEPS = ['photo', 'meet', 'care'] as const;
 
 const CTA_CLASS =
@@ -52,7 +62,7 @@ export default function HomePage() {
             effect={null}
             urgentNeed={null}
             label={t('home.heroPetLabel')}
-            traits={{ leafShape: 'HEART', leafCount: 5 }}
+            traits={HERO_TRAITS}
           />
         </div>
       </section>
@@ -95,7 +105,7 @@ export default function HomePage() {
                   effect={null}
                   urgentNeed={SHOWCASE_NEED[mood]}
                   label={moodName}
-                  traits={{ leafShape: 'POINTED', leafCount: 5 }}
+                  traits={SHOWCASE_TRAITS}
                   interactive={false}
                 />
                 <p className="text-center font-semibold capitalize text-[var(--color-text)]">

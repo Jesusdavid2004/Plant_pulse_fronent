@@ -4,7 +4,18 @@ import { usePetMotion } from '../hooks/usePetMotion';
 import { MOOD_PRESENTATION, type EyeStyle, type MouthStyle } from '../moodPresentation';
 import type { CareType, Mood } from '../types';
 import type { PetTraits } from '../../plants/types';
-import { buildLeafPoses, DEFAULT_PET_TRAITS, LEAF_PATHS, leafScale } from '../leafGeometry';
+import {
+  BLOOM_PATHS,
+  BLOOM_WILT_SCALE,
+  buildLeafPoses,
+  DEFAULT_PET_TRAITS,
+  FLOWER_HEIGHT,
+  FLOWER_PETAL_ANGLES,
+  SPIKE_SCALE,
+  LEAF_PATHS,
+  leafScale,
+} from '../leafGeometry';
+import { blendLeafColor, bloomColorVar } from '../traitColors';
 
 const BOUNCE_HEIGHT_PX = -16;
 const BOUNCE_DURATION_S = 0.5;
@@ -116,6 +127,50 @@ function SparkleBurst({ positions }: { positions: { x: number; y: number }[] }) 
   );
 }
 
+interface BloomProps {
+  traits: PetTraits;
+  wiltDegrees: number;
+  sway: number;
+  wilted: boolean;
+}
+
+function Bloom({ traits, wiltDegrees, sway, wilted }: BloomProps) {
+  if (traits.bloomShape === 'NONE') return null;
+  const color = bloomColorVar(traits.bloomColor);
+  const opacity = wilted ? 1 - BLOOM_WILT_SCALE : 1;
+
+  if (traits.bloomShape === 'SPIKE') {
+    return (
+      <g
+        transform={`rotate(${wiltDegrees + sway * 0.4}) scale(${SPIKE_SCALE.x} ${SPIKE_SCALE.y})`}
+        opacity={opacity}
+      >
+        <path d={BLOOM_PATHS.SPIKE} fill={color} />
+        <path
+          d={BLOOM_PATHS.SPIKE_RIBS}
+          stroke="var(--color-pet-ink)"
+          strokeOpacity={0.28}
+          strokeWidth={2}
+          strokeLinecap="round"
+          fill="none"
+        />
+      </g>
+    );
+  }
+
+  return (
+    <g transform={`rotate(${wiltDegrees + sway * 0.4})`} opacity={opacity}>
+      <path d={`M0 0 L0 ${-FLOWER_HEIGHT}`} stroke="var(--color-pet-stem)" strokeWidth={4} />
+      <g transform={`translate(0 ${-FLOWER_HEIGHT})`}>
+        {FLOWER_PETAL_ANGLES.map((angle) => (
+          <path key={angle} d={BLOOM_PATHS.PETAL} fill={color} transform={`rotate(${angle})`} />
+        ))}
+        <circle r={7} fill="var(--color-pet-sun)" />
+      </g>
+    </g>
+  );
+}
+
 export interface PlantPetCharacterProps {
   mood: Mood;
   effect: CareType | null;
@@ -172,13 +227,21 @@ export function PlantPetCharacter({
           className={`block w-full rounded-3xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-primary)] ${interactive ? 'cursor-pointer' : ''}`}
         >
           <svg
-            viewBox="0 0 240 262"
+            viewBox="0 -24 240 286"
             aria-hidden="true"
             className="mx-auto h-auto w-full max-w-[320px]"
           >
             <ellipse cx={120} cy={252} rx={62} ry={7} fill="var(--color-pet-ink)" opacity={0.12} />
 
-            <g style={{ color: presentation.leafColorVar }}>
+            <g
+              style={{
+                color: blendLeafColor(
+                  traits.leafColor,
+                  presentation.leafColorVar,
+                  presentation.plantColorWeight,
+                ),
+              }}
+            >
               <path
                 d="M120 148 L120 96"
                 stroke="var(--color-pet-stem)"
@@ -186,10 +249,16 @@ export function PlantPetCharacter({
                 strokeLinecap="round"
               />
               <g transform="translate(120 100)">
+                <Bloom
+                  traits={traits}
+                  wiltDegrees={angles.droop * 0.15}
+                  sway={angles.sway}
+                  wilted={mood === 'SAD' || mood === 'SICK'}
+                />
                 {leafPoses.map((leaf) => (
                   <g
                     key={leaf.key}
-                    transform={`rotate(${leaf.baseAngle + angles.droop * leaf.droopRatio + angles.sway * leaf.swayRatio}) scale(${scale})`}
+                    transform={`rotate(${leaf.baseAngle + angles.droop * leaf.droopRatio + angles.sway * leaf.swayRatio}) scale(${leaf.mirror ? -scale : scale} ${scale})`}
                   >
                     <path
                       d={LEAF_PATHS[traits.leafShape]}

@@ -36,3 +36,11 @@ describe('leafScale', () => {
     expect(leafScale(30)).toBe(0.7);
   });
 });
+
+describe('mirrored leaves', () => {
+  it('flips the leaves on the left so asymmetric blades arch outwards', () => {
+    const poses = buildLeafPoses(5);
+
+    expect(poses.map((leaf) => leaf.mirror)).toEqual([true, true, false, false, false]);
+  });
+});

@@ -1,12 +1,20 @@
 import type { LeafShape, PetTraits } from '../plants/types';
 
-export const DEFAULT_PET_TRAITS: PetTraits = { leafShape: 'POINTED', leafCount: 3 };
+export const DEFAULT_PET_TRAITS: PetTraits = {
+  leafShape: 'POINTED',
+  leafCount: 3,
+  leafColor: 'GREEN',
+  bloomShape: 'NONE',
+  bloomColor: 'PINK',
+};
 
 export const LEAF_PATHS: Record<LeafShape, string> = {
   POINTED: 'M0 0 C-24 -22 -22 -62 0 -88 C22 -62 24 -22 0 0 Z',
   ROUND: 'M0 0 C-34 -14 -34 -62 0 -70 C34 -62 34 -14 0 0 Z',
   LONG: 'M0 0 C-13 -30 -13 -80 0 -108 C13 -80 13 -30 0 0 Z',
   SPIKY: 'M0 0 C-8 -30 -7 -72 0 -112 C7 -72 8 -30 0 0 Z',
+  GRASS: 'M0 0 C-5 -40 0 -96 22 -134 C10 -92 7 -40 5 0 Z',
+  BROAD: 'M0 0 C-42 -10 -44 -66 0 -86 C44 -66 42 -10 0 0 Z',
   HEART:
     'M0 0 C-26 -14 -30 -52 -13 -66 C-6 -72 0 -66 0 -58 C0 -66 6 -72 13 -66 C30 -52 26 -14 0 0 Z',
 };
@@ -26,11 +34,26 @@ export interface LeafPose {
   baseAngle: number;
   droopRatio: number;
   swayRatio: number;
+  mirror: boolean;
 }
 
 export function leafScale(leafCount: number): number {
   return Math.max(MIN_SCALE, 1 - (leafCount - MIN_LEAVES) * SCALE_LOSS_PER_EXTRA_LEAF);
 }
+
+export const BLOOM_PATHS = {
+  SPIKE: 'M0 0 C-17 -18 -19 -60 0 -100 C19 -60 17 -18 0 0 Z',
+  SPIKE_RIBS:
+    'M0 -8 L-11 -22 M0 -8 L11 -22 M0 -30 L-13 -46 M0 -30 L13 -46 M0 -52 L-11 -68 M0 -52 L11 -68 M0 -74 L-7 -86 M0 -74 L7 -86',
+  PETAL: 'M0 0 C-13 -8 -13 -26 0 -32 C13 -26 13 -8 0 0 Z',
+} as const;
+
+export const FLOWER_PETAL_ANGLES = [0, 72, 144, 216, 288] as const;
+export const FLOWER_HEIGHT = 74;
+
+export const SPIKE_SCALE = { x: 1.35, y: 1.15 } as const;
+
+export const BLOOM_WILT_SCALE = 0.35;
 
 export function buildLeafPoses(leafCount: number): LeafPose[] {
   const count = Math.max(MIN_LEAVES, leafCount);
@@ -50,6 +73,7 @@ export function buildLeafPoses(leafCount: number): LeafPose[] {
       droopRatio: isCenter
         ? CENTER_DROOP_RATIO
         : direction * (DROOP_BASE_RATIO + DROOP_EDGE_RATIO * edgeness),
+      mirror: direction < 0,
       swayRatio: isCenter ? 0.5 : 0.6 + 0.4 * edgeness,
     };
   });
