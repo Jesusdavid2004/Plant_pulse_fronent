@@ -69,6 +69,31 @@
   --color-plant-bloom-purple: #8e5cc9;
   --color-plant-bloom-white: #f3efe6;
   --color-plant-bloom-blue: #4a7fd6;
+  --color-pot-terracotta: #c9764f;
+  --color-pot-terracotta-shade: #a85d3b;
+  --color-pot-blue: #4f86c6;
+  --color-pot-blue-shade: #3b6aa3;
+  --color-pot-white: #ece8e0;
+  --color-pot-white-shade: #c9c3b8;
+  --color-pot-pink: #e58aa8;
+  --color-pot-pink-shade: #c76b8b;
+  --color-pot-gold: #e0b13a;
+  --color-pot-gold-shade: #b88a1f;
+  --color-scene-living-room-sky: #f3e6d3;
+  --color-scene-living-room-ground: #d8b88f;
+  --color-scene-living-room-accent: #bfe3f5;
+  --color-scene-garden-sky: #bfe6f7;
+  --color-scene-garden-ground: #8fcf7a;
+  --color-scene-garden-accent: #f7a8c4;
+  --color-scene-night-sky-sky: #243b6b;
+  --color-scene-night-sky-ground: #3c4a6b;
+  --color-scene-night-sky-accent: #f7e7a1;
+  --color-scene-beach-sky: #9fdcf5;
+  --color-scene-beach-ground: #f2dba8;
+  --color-scene-beach-accent: #4db3d6;
+  --color-scene-greenhouse-sky: #dff3e0;
+  --color-scene-greenhouse-ground: #b98a60;
+  --color-scene-greenhouse-accent: #6bbf7a;
   --color-bg: #faf9f6;
   --color-surface-raised: #ffffff;
   --color-primary-contrast: #ffffff;
@@ -124,6 +149,31 @@
   --color-plant-bloom-purple: #a87ae0;
   --color-plant-bloom-white: #ece7da;
   --color-plant-bloom-blue: #6e9ef0;
+  --color-pot-terracotta: #d98a60;
+  --color-pot-terracotta-shade: #b86f47;
+  --color-pot-blue: #6f9fda;
+  --color-pot-blue-shade: #4f7fbd;
+  --color-pot-white: #d9d4c8;
+  --color-pot-white-shade: #b3ad9f;
+  --color-pot-pink: #ee9db8;
+  --color-pot-pink-shade: #d17f9d;
+  --color-pot-gold: #efc255;
+  --color-pot-gold-shade: #c79a2c;
+  --color-scene-living-room-sky: #2b2620;
+  --color-scene-living-room-ground: #4a3b2c;
+  --color-scene-living-room-accent: #26405a;
+  --color-scene-garden-sky: #17324a;
+  --color-scene-garden-ground: #2f6a3f;
+  --color-scene-garden-accent: #d977a0;
+  --color-scene-night-sky-sky: #0b1330;
+  --color-scene-night-sky-ground: #1c2540;
+  --color-scene-night-sky-accent: #f7e7a1;
+  --color-scene-beach-sky: #1b4361;
+  --color-scene-beach-ground: #7a6a45;
+  --color-scene-beach-accent: #1f7a9c;
+  --color-scene-greenhouse-sky: #1d3a2b;
+  --color-scene-greenhouse-ground: #4a3524;
+  --color-scene-greenhouse-accent: #3f9461;
   --color-bg: #000000;
   --color-surface-raised: #151515;
   --color-primary-contrast: #04170c;
@@ -144,4 +194,24 @@ body {
   font-family:
     -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
     sans-serif;
+}
+
+@keyframes pp-twinkle {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.pp-twinkle {
+  animation: pp-twinkle 2.6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pp-twinkle {
+    animation: none;
+  }
 }
