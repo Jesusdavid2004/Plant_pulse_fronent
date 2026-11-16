@@ -4,6 +4,8 @@ export const userSchema = z.object({
   id: z.string(),
   email: z.string(),
   name: z.string().nullable(),
+  locale: z.enum(['en', 'es']).default('en'),
+  emailNotifications: z.boolean().default(true),
 });
 
 export const authSessionSchema = z.object({

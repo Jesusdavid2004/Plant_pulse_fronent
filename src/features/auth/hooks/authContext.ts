@@ -1,5 +1,5 @@
 import { createContext, useContext } from 'react';
-import type { LoginInput, RegisterInput } from '../services/AuthService';
+import type { LoginInput, PreferencesChange, RegisterInput } from '../services/AuthService';
 import type { User } from '../types';
 
 export type AuthStatus = 'loading' | 'authenticated' | 'anonymous';
@@ -10,6 +10,7 @@ export interface AuthContextValue {
   login: (input: LoginInput) => Promise<void>;
   register: (input: RegisterInput) => Promise<void>;
   logout: () => Promise<void>;
+  updatePreferences: (changes: PreferencesChange) => Promise<void>;
   deleteAccount: () => Promise<void>;
 }
 

@@ -29,7 +29,7 @@ interface ErrorEnvelope {
 }
 
 interface RequestOptions<T> {
-  method?: 'GET' | 'POST' | 'PATCH' | 'DELETE';
+  method?: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
   body?: unknown;
   form?: FormData;
   schema?: ZodType<T>;
@@ -66,6 +66,10 @@ class ApiClient {
 
   post<T>(path: string, body: unknown, schema: ZodType<T>): Promise<T> {
     return this.request(path, { method: 'POST', body, schema });
+  }
+
+  put<T>(path: string, body: unknown, schema: ZodType<T>): Promise<T> {
+    return this.request(path, { method: 'PUT', body, schema });
   }
 
   patch<T>(path: string, body: unknown, schema: ZodType<T>): Promise<T> {

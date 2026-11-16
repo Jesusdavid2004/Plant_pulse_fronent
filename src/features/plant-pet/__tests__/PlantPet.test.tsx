@@ -74,6 +74,9 @@ describe('PlantPet', () => {
       plantId: 'plant-1',
       type: 'WATER',
       occurredAt: '2026-11-15T12:00:00Z',
+      reward: { xp: 10, coins: 5 },
+      leveledUp: false,
+      level: 1,
     });
     const user = userEvent.setup();
 

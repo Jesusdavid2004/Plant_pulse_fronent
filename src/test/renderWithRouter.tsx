@@ -9,6 +9,7 @@ export const DEFAULT_AUTH: AuthContextValue = {
   login: async () => undefined,
   register: async () => undefined,
   logout: async () => undefined,
+  updatePreferences: async () => undefined,
   deleteAccount: async () => undefined,
 };
 

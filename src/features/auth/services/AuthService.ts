@@ -12,6 +12,11 @@ export interface LoginInput {
   password: string;
 }
 
+export interface PreferencesChange {
+  emailNotifications?: boolean;
+  locale?: 'en' | 'es';
+}
+
 export class AuthService {
   register(input: RegisterInput): Promise<AuthSession> {
     return apiClient.post('/auth/register', input, authSessionSchema);
@@ -31,6 +36,18 @@ export class AuthService {
 
   logout(): Promise<void> {
     return apiClient.request('/auth/logout', { method: 'POST' });
+  }
+
+  updatePreferences(changes: PreferencesChange): Promise<User> {
+    return apiClient.patch('/auth/me/preferences', changes, userSchema);
+  }
+
+  sendTestEmail(): Promise<void> {
+    return apiClient.request('/auth/me/test-email', { method: 'POST' });
+  }
+
+  unsubscribe(token: string): Promise<void> {
+    return apiClient.request('/auth/unsubscribe', { method: 'POST', body: { token } });
   }
 
   deleteAccount(): Promise<void> {
