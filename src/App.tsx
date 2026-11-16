@@ -13,6 +13,7 @@ const AuthPage = lazy(() => import('./pages/AuthPage'));
 const DashboardPage = lazy(() => import('./pages/DashboardPage'));
 const PlantDetailPage = lazy(() => import('./pages/PlantDetailPage'));
 const SettingsPage = lazy(() => import('./pages/SettingsPage'));
+const UnsubscribePage = lazy(() => import('./pages/UnsubscribePage'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 
 export default function App() {
@@ -28,6 +29,7 @@ export default function App() {
                   <Route index element={<HomePage />} />
                   <Route path="login" element={<AuthPage mode="login" />} />
                   <Route path="register" element={<AuthPage mode="register" />} />
+                  <Route path="unsubscribe" element={<UnsubscribePage />} />
                   <Route element={<ProtectedRoute />}>
                     <Route path="dashboard" element={<DashboardPage />} />
                     <Route path="plants/:id" element={<PlantDetailPage />} />

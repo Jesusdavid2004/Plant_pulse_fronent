@@ -12,6 +12,10 @@ animated character whose mood follows the real care and health of the plant.
 - Add a plant from the **camera or a file**; the AI identifies it and checks its health.
 - An SVG character drawn with the leaf shape, count, color and bloom (flower or spike) found by the AI, animated with `motion`; its mood
   (happy, worried, sad, sick) reacts to watering, light, fertilizing and to each health check-up.
+- **Play with your plant**: real care earns experience and coins (levels unlock scenes), two accessible mini-games
+  (catch the drops, memory match) whose score the server validates, a style tab to equip scenes and buy pots,
+  and tap the character to make it bounce and send hearts.
+- Email reminder preferences in the account page (one click test email) and a public unsubscribe page.
 - Health history and check-ups, plus a translated disclaimer wherever the AI gives advice.
 - English and Spanish with locale-prefixed routes (`/en/...`, `/es/...`), `NEXT_LOCALE` cookie and a navbar switch.
 - Light, dark and system themes with a manual override, no flash on load, WCAG AA contrast in both themes.

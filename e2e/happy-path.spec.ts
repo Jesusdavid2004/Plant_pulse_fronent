@@ -37,6 +37,17 @@ test('a new user registers a plant, cares for it, then switches language and the
 
   await page.getByRole('button', { name: 'Water' }).click();
   await expect(page.getByText(/Glug glug/)).toBeVisible();
+  await expect(page.getByText('You earned 10 XP and 5 coins.')).toBeVisible();
+
+  await page.getByRole('tab', { name: 'Play' }).click();
+  await page.getByRole('button', { name: 'Play' }).nth(1).click();
+  await page.getByRole('button', { name: 'Start' }).click();
+  await expect(page.getByRole('button', { name: /Card 1, face down/ })).toBeVisible();
+  await page.getByRole('button', { name: 'Back to games' }).click();
+
+  await page.getByRole('tab', { name: 'Style' }).click();
+  await expect(page.getByText('Unlocks at level 2')).toBeVisible();
+  await page.getByRole('tab', { name: 'Care' }).click();
 
   await page.getByRole('button', { name: 'Spanish' }).click();
   await expect(page).toHaveURL(/\/es\/plants\//);

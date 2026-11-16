@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Button } from '../components/ui/Button';
 import { Card } from '../components/ui/Card';
 import { Dialog } from '../components/ui/Dialog';
+import { NotificationSettings } from '../features/auth/components/NotificationSettings';
 import { useAuth } from '../features/auth/hooks/authContext';
 import { useLocalizedNavigate } from '../i18n/useLocale';
 
@@ -30,6 +31,7 @@ export default function SettingsPage() {
         <p className="text-sm text-[var(--color-text-secondary)]">{t('auth.email')}</p>
         <p className="font-medium text-[var(--color-text)]">{user?.email}</p>
       </Card>
+      <NotificationSettings />
       <Card className="space-y-3">
         <h2 className="text-lg font-semibold text-[var(--color-danger)]">
           {t('settings.dangerZone')}
