@@ -14,9 +14,11 @@ const SHOWCASE_NEED: Record<Mood, CareType | null> = {
   SICK: null,
 };
 const HERO_TRAITS: PetTraits = {
+  growthForm: 'ROSETTE',
   leafShape: 'GRASS',
   leafCount: 7,
   leafColor: 'DARK_GREEN',
+  leafPattern: 'PLAIN',
   bloomShape: 'SPIKE',
   bloomColor: 'PINK',
 };

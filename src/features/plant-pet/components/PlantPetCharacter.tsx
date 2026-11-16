@@ -5,18 +5,9 @@ import { usePetMotion } from '../hooks/usePetMotion';
 import { MOOD_PRESENTATION, type EyeStyle, type MouthStyle } from '../moodPresentation';
 import type { CareType, Mood, PotKey } from '../types';
 import type { PetTraits } from '../../plants/types';
-import {
-  BLOOM_PATHS,
-  BLOOM_WILT_SCALE,
-  buildLeafPoses,
-  DEFAULT_PET_TRAITS,
-  FLOWER_HEIGHT,
-  FLOWER_PETAL_ANGLES,
-  SPIKE_SCALE,
-  LEAF_PATHS,
-  leafScale,
-} from '../leafGeometry';
-import { blendLeafColor, bloomColorVar, potColorVars } from '../traitColors';
+import { DEFAULT_PET_TRAITS } from '../leafGeometry';
+import { blendLeafColor, potColorVars } from '../traitColors';
+import { PlantFigure, PlantVines } from './PlantFigure';
 
 const BOUNCE_HEIGHT_PX = -16;
 const BOUNCE_DURATION_S = 0.5;
@@ -128,50 +119,6 @@ function SparkleBurst({ positions }: { positions: { x: number; y: number }[] }) 
   );
 }
 
-interface BloomProps {
-  traits: PetTraits;
-  wiltDegrees: number;
-  sway: number;
-  wilted: boolean;
-}
-
-function Bloom({ traits, wiltDegrees, sway, wilted }: BloomProps) {
-  if (traits.bloomShape === 'NONE') return null;
-  const color = bloomColorVar(traits.bloomColor);
-  const opacity = wilted ? 1 - BLOOM_WILT_SCALE : 1;
-
-  if (traits.bloomShape === 'SPIKE') {
-    return (
-      <g
-        transform={`rotate(${wiltDegrees + sway * 0.4}) scale(${SPIKE_SCALE.x} ${SPIKE_SCALE.y})`}
-        opacity={opacity}
-      >
-        <path d={BLOOM_PATHS.SPIKE} fill={color} />
-        <path
-          d={BLOOM_PATHS.SPIKE_RIBS}
-          stroke="var(--color-pet-ink)"
-          strokeOpacity={0.28}
-          strokeWidth={2}
-          strokeLinecap="round"
-          fill="none"
-        />
-      </g>
-    );
-  }
-
-  return (
-    <g transform={`rotate(${wiltDegrees + sway * 0.4})`} opacity={opacity}>
-      <path d={`M0 0 L0 ${-FLOWER_HEIGHT}`} stroke="var(--color-pet-stem)" strokeWidth={4} />
-      <g transform={`translate(0 ${-FLOWER_HEIGHT})`}>
-        {FLOWER_PETAL_ANGLES.map((angle) => (
-          <path key={angle} d={BLOOM_PATHS.PETAL} fill={color} transform={`rotate(${angle})`} />
-        ))}
-        <circle r={7} fill="var(--color-pet-sun)" />
-      </g>
-    </g>
-  );
-}
-
 const HEART_BASE_X = 88;
 const HEART_X_SPREAD = 64;
 const HEART_X_STEP = 37;
@@ -238,8 +185,11 @@ export function PlantPetCharacter({
   };
 
   const potVars = potColorVars(pot);
-  const leafPoses = buildLeafPoses(traits.leafCount);
-  const scale = leafScale(traits.leafCount);
+  const plantColor = blendLeafColor(
+    traits.leafColor,
+    presentation.leafColorVar,
+    presentation.plantColorWeight,
+  );
   const Wrapper = interactive ? 'button' : 'div';
   const wrapperProps = interactive
     ? ({ type: 'button', onClick: bounce, 'aria-label': label } as const)
@@ -257,47 +207,18 @@ export function PlantPetCharacter({
           className={`block w-full rounded-3xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-primary)] ${interactive ? 'cursor-pointer' : ''}`}
         >
           <svg
-            viewBox="0 -24 240 286"
+            viewBox="0 -34 240 296"
             aria-hidden="true"
             className="mx-auto h-auto w-full max-w-[320px]"
           >
             <ellipse cx={120} cy={252} rx={62} ry={7} fill="var(--color-pet-ink)" opacity={0.12} />
 
-            <g
-              style={{
-                color: blendLeafColor(
-                  traits.leafColor,
-                  presentation.leafColorVar,
-                  presentation.plantColorWeight,
-                ),
-              }}
-            >
-              <path
-                d="M120 148 L120 96"
-                stroke="var(--color-pet-stem)"
-                strokeWidth={8}
-                strokeLinecap="round"
+            <g style={{ color: plantColor }}>
+              <PlantFigure
+                traits={traits}
+                angles={angles}
+                wilted={mood === 'SAD' || mood === 'SICK'}
               />
-              <g transform="translate(120 100)">
-                <Bloom
-                  traits={traits}
-                  wiltDegrees={angles.droop * 0.15}
-                  sway={angles.sway}
-                  wilted={mood === 'SAD' || mood === 'SICK'}
-                />
-                {leafPoses.map((leaf) => (
-                  <g
-                    key={leaf.key}
-                    transform={`rotate(${leaf.baseAngle + angles.droop * leaf.droopRatio + angles.sway * leaf.swayRatio}) scale(${leaf.mirror ? -scale : scale} ${scale})`}
-                  >
-                    <path
-                      d={LEAF_PATHS[traits.leafShape]}
-                      fill="currentColor"
-                      style={{ transition: 'fill 0.8s ease' }}
-                    />
-                  </g>
-                ))}
-              </g>
             </g>
 
             <path
@@ -305,6 +226,9 @@ export function PlantPetCharacter({
               fill={potVars.base}
             />
             <rect x={54} y={140} width={132} height={22} rx={9} fill={potVars.shade} />
+            <g style={{ color: plantColor }}>
+              <PlantVines traits={traits} angles={angles} />
+            </g>
 
             {presentation.showBlush && (
               <g fill="var(--color-pet-blush)" opacity={0.85}>

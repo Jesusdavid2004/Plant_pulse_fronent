@@ -2,8 +2,9 @@ import { useCallback, useRef, useState, type KeyboardEvent, type PointerEvent } 
 import { useTranslation } from 'react-i18next';
 import { Button } from '../../../components/ui/Button';
 import type { PetTraits } from '../../plants/types';
-import { BLOOM_PATHS, buildLeafPoses, LEAF_PATHS } from '../leafGeometry';
-import { bloomColorVar, leafColorVar, potColorVars } from '../traitColors';
+import { PlantFigure, PlantVines } from '../components/PlantFigure';
+import { RIM_Y, BASE_X } from '../plantLayout';
+import { leafColorVar, potColorVars } from '../traitColors';
 import type { PotKey } from '../types';
 import {
   CATCH_LINE_Y,
@@ -20,7 +21,8 @@ import { useAnimationLoop } from './useAnimationLoop';
 const VIEW_WIDTH = 300;
 const VIEW_HEIGHT = 400;
 const BUTTON_STEP = 0.12;
-const PLAYER_PLANT_SCALE = 0.42;
+const PLAYER_PLANT_SCALE = 0.36;
+const STILL_ANGLES = { droop: 0, sway: 0 };
 
 interface DropCatchGameProps {
   traits: PetTraits;
@@ -127,27 +129,20 @@ export function DropCatchGame({ traits, pot, onFinish }: DropCatchGameProps) {
           ),
         )}
         <g transform={`translate(${playerPx} ${VIEW_HEIGHT * CATCH_LINE_Y})`}>
-          <path
-            d="M0 0 L0 -22"
-            stroke="var(--color-pet-stem)"
-            strokeWidth={6}
-            strokeLinecap="round"
-          />
-          <g transform={`translate(0 -22) scale(${PLAYER_PLANT_SCALE})`}>
-            {traits.bloomShape === 'SPIKE' && (
-              <path d={BLOOM_PATHS.SPIKE} fill={bloomColorVar(traits.bloomColor)} />
-            )}
-            {buildLeafPoses(traits.leafCount).map((leaf) => (
-              <path
-                key={leaf.key}
-                d={LEAF_PATHS[traits.leafShape]}
-                fill={leafColorVar(traits.leafColor)}
-                transform={`rotate(${leaf.baseAngle}) scale(${leaf.mirror ? -1 : 1} 1)`}
-              />
-            ))}
+          <g
+            transform={`scale(${PLAYER_PLANT_SCALE}) translate(${-BASE_X} ${-RIM_Y})`}
+            style={{ color: leafColorVar(traits.leafColor) }}
+          >
+            <PlantFigure traits={traits} angles={STILL_ANGLES} />
           </g>
           <path d="M-30 0 H30 L24 34 H-24 Z" fill={potVars.base} />
           <rect x={-34} y={-6} width={68} height={12} rx={5} fill={potVars.shade} />
+          <g
+            transform={`scale(${PLAYER_PLANT_SCALE}) translate(${-BASE_X} ${-RIM_Y})`}
+            style={{ color: leafColorVar(traits.leafColor) }}
+          >
+            <PlantVines traits={traits} angles={STILL_ANGLES} />
+          </g>
         </g>
       </svg>
 

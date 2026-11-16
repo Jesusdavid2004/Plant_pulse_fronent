@@ -8,7 +8,20 @@ export const LEAF_SHAPES = [
   'HEART',
   'GRASS',
   'BROAD',
+  'SWORD',
+  'FROND',
 ] as const;
+export const GROWTH_FORMS = [
+  'ROSETTE',
+  'UPRIGHT',
+  'STALKED',
+  'BUSHY',
+  'PALM',
+  'TREE',
+  'CACTUS',
+  'TRAILING',
+] as const;
+export const LEAF_PATTERNS = ['PLAIN', 'STRIPED', 'VEINED'] as const;
 export const LEAF_COLORS = [
   'GREEN',
   'DARK_GREEN',
@@ -17,14 +30,16 @@ export const LEAF_COLORS = [
   'PURPLE',
   'RED',
 ] as const;
-export const BLOOM_SHAPES = ['NONE', 'SPIKE', 'FLOWER'] as const;
+export const BLOOM_SHAPES = ['NONE', 'SPIKE', 'FLOWER', 'SPATHE'] as const;
 export const BLOOM_COLORS = ['PINK', 'RED', 'ORANGE', 'YELLOW', 'PURPLE', 'WHITE', 'BLUE'] as const;
 export const HEALTH_STATUSES = ['healthy', 'warning', 'critical'] as const;
 
 export const petTraitsSchema = z.object({
+  growthForm: z.enum(GROWTH_FORMS).default('ROSETTE'),
   leafShape: z.enum(LEAF_SHAPES),
   leafCount: z.number().int().min(1).max(12),
   leafColor: z.enum(LEAF_COLORS).default('GREEN'),
+  leafPattern: z.enum(LEAF_PATTERNS).default('PLAIN'),
   bloomShape: z.enum(BLOOM_SHAPES).default('NONE'),
   bloomColor: z.enum(BLOOM_COLORS).default('PINK'),
 });
@@ -65,6 +80,8 @@ export const checkupSchema = z.object({
 });
 
 export type LeafShape = (typeof LEAF_SHAPES)[number];
+export type GrowthForm = (typeof GROWTH_FORMS)[number];
+export type LeafPattern = (typeof LEAF_PATTERNS)[number];
 export type HealthStatus = (typeof HEALTH_STATUSES)[number];
 export type LeafColor = (typeof LEAF_COLORS)[number];
 export type BloomColor = (typeof BLOOM_COLORS)[number];

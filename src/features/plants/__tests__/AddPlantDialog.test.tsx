@@ -21,9 +21,11 @@ const registration: PlantRegistration = {
     commonName: 'Monstera',
     careCategory: 'TROPICAL',
     petTraits: {
+      growthForm: 'STALKED',
       leafShape: 'HEART',
       leafCount: 5,
       leafColor: 'GREEN',
+      leafPattern: 'PLAIN',
       bloomShape: 'NONE',
       bloomColor: 'PINK',
     },
